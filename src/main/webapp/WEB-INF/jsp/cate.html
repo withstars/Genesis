@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        li {list-style-type:none;}
+        html, body {
+            height: 100%;
+            font-size: 14px;
+            color: #525252;
+            font-family: NotoSansHans-Regular,AvenirNext-Regular,arial,Hiragino Sans GB,"Microsoft Yahei","Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;
+            background: #f0f2f5;
+        }
+        .footer {
+            background-color: #fff;
+            margin-top: 22px;
+            margin-bottom: 22px;
+            width: 100%;
+            padding-top: 22px;
+            color: #8A8A8A;
+            display: block;
+            height: 200px;
+            border: 1px ;
+            clear:both
+        }
+
+        .container {
+            margin-right: 5%;
+            margin-left: 5%;
+            padding-left: 15px;
+            padding-right: 15px;
+            width: 40%;
+            float: left;
+        }
+        .info {
+            margin-right: 5%;
+            width: 10%;
+            float: left;
+        }
+        a{
+            color: #8A8A8A;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default" role="navigation" style="background-color: white">
+        <div class="container-fluid" style="margin-left: 10%">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Coder Forum</a>
+            </div>
+            <div>
+                <!--向左对齐-->
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="active"><a href="#">技术</a></li>
+                    <li><a href="#">好玩</a></li>
+                    <li><a href="#">工单</a></li>
+                    <li><a href="#">工作</a></li>
+                    <li><a href="#">程序员</a></li>
+                    <li><a href="#">最热</a></li>
+                </ul>
+                <!--向右对齐-->
+
+
+
+                <form class="navbar-form navbar-right" role="search">
+                    <input type="text" class="form-control" id="firstname" placeholder="搜索">
+                    <button type="submit" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+
+                    <button type="button" class="btn btn-default btn-sm" >
+                        <span class="glyphicon glyphicon-user"></span>登陆
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+</header>
+<div class="panel panel-default" id="main" style="width: 70%;margin:2% 2% 5% 5%;float: left;">
+    <div class="panel-heading" style="background-color: white">
+        <a style="margin-right: 2%">活跃</a><a style="margin-right: 2%">精华</a><a style="margin-right: 2%">投票</a><a style="margin-right: 2%">最近</a>
+</div>
+
+<ul class="list-group" style="width: 100%">
+    <li class="list-group-item">
+        <div style="height: auto">
+            <div style="float: left;width: 6%;margin-bottom: ">
+                <img width="50px" height="50px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516705523&di=8ce297fa0fff1917be616a0995f6748a&imgtype=jpg&er=1&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F2cf5e0fe9925bc313db40d1c5edf8db1ca13704c.jpg" class="img-rounded">
+            </div>
+            <div style="width: 89%;float: left">
+                <a>Laravel 使用 Laravel-google-authenticator 拓展通过 Google 身份验证器为你的网站打造一个动态手机令牌</a><br/>
+                <p>Google</p>
+            </div>
+            <div style="width: 5%;float: right;text-align: center">
+                <span class="badge">50</span>
+            </div>
+        </div>
+    </li>
+</ul>
+
+</div>
+<div class="panel panel-default" id="sidebar1" style="width: 20%;margin:2% 2% 1% 0%;float: right">
+    <div class="panel-heading" style="background-color: white;text-align: center">
+       热门跟帖
+    </div>
+    <ul class="list-group" style="width: 100%">
+        <li class="list-group-item"><a>免费域名注册</a></li>
+        <li class="list-group-item"><a>免费 Window 空间托管</a></li>
+        <li class="list-group-item"><a>图像的数量</a></li>
+        <li class="list-group-item"><a>24*7 支持</a></li>
+        <li class="list-group-item"><a>每年更新成本</a></li>
+    </ul>
+</div>
+<div class="panel panel-default" id="sidebar2" style="width: 20%;margin:0% 2% 5% 0%;float: right">
+    <div class="panel-heading" style="background-color: white;text-align: center">
+        伙伴社区
+    </div>
+    <ul class="list-group" style="width: 100%">
+        <li class="list-group-item"><a>GoLang中国</a></li>
+        <li class="list-group-item"><a>Ruby China</a></li>
+        <li class="list-group-item"><a>cnode</a></li>
+        <li class="list-group-item"><a>EasyWeChat</a></li>
+        <li class="list-group-item"><a>diyCode</a></li>
+    </ul>
+</div>
+<footer class="footer" >
+    <div class="container">
+        我们是高品质的开发者社区，致力于为开发者提供一个分享创造、结识伙伴、协同互助的平台。
+        <br/><br/><br/>
+        <p>Designed by <span class="glyphicon glyphicon-heart"></span> value</p>
+    </div>
+    <div class="info">
+        <p style="text-align: center;font-size: 16px;">友情链接</p>
+        <ul >
+            <li><a>七牛云</a></li>
+            <li><a>Github</a></li>
+            <li><a>Segmentfault</a></li>
+            <li><a>V2ex</a></li>
+        </ul>
+    </div>
+    <div class="info">
+        <p style="text-align: center;font-size: 16px;">统计信息</p>
+        <ul >
+            <li>当前在线: 819</li>
+            <li>会员数: 19730</li>
+            <li>话题数: 5819</li>
+        </ul>
+    </div>
+    <div class="info" >
+        <p style="text-align: center;font-size: 16px;">其他信息</p>
+        <ul >
+            <li><a>推荐网站</a></li>
+            <li><a>关于我们</a></li>
+        </ul>
+    </div>
+</footer>
+</body>
+</html>
