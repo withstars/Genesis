@@ -1,2 +1,2 @@
-# Forum
-Base on Spring, Spring MVC, MyBatis
+# Genesis
+A social networking site built by Java.
