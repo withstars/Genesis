@@ -5,11 +5,13 @@ import com.withstars.domain.User;
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(User record);
+    int addUser(User user);
 
     int insertSelective(User record);
 
     User selectByPrimaryKey(Integer id);
+
+    User selectByUsername(String username);
 
     int updateByPrimaryKeySelective(User record);
 
