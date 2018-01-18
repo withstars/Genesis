@@ -49,53 +49,22 @@
     </style>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-default" role="navigation" style="background-color: white">
-        <div class="container-fluid" style="margin-left: 10%">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Coder Forum</a>
-            </div>
-            <div>
-                <!--向左对齐-->
-                <ul class="nav navbar-nav navbar-left">
-                    <li class="active"><a href="#">技术</a></li>
-                    <li><a href="#">好玩</a></li>
-                    <li><a href="#">工单</a></li>
-                    <li><a href="#">工作</a></li>
-                    <li><a href="#">程序员</a></li>
-                    <li><a href="#">最热</a></li>
-                </ul>
-                <!--向右对齐-->
+<!-- 引入header文件 -->
+<%@ include file="header.jsp"%>
 
-
-
-                <form class="navbar-form navbar-right" role="search">
-                    <input type="text" class="form-control" id="firstname" placeholder="搜索">
-                    <button type="submit" class="btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-
-                    <button type="button" class="btn btn-default btn-sm" >
-                        <span class="glyphicon glyphicon-user"></span>登陆
-                    </button>
-                </form>
-            </div>
-        </div>
-    </nav>
-
-</header>
 <div class="panel panel-default" id="login" style="width: 20%;margin-left: 40%;margin-top: 5%;margin-bottom: 5%">
     <div class="panel-heading" style="background-color: #fff">
         <h3 class="panel-title">登录</h3>
     </div>
     <div class="panel-body">
+        <form action="/signin/do" method="post">
         <div class="form-group">
-            <label for="id">用户名</label>
-            <input type="text" class="form-control" id="id" placeholder="请输入用户名">
+            <label for="username">用户名</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
         </div>
         <div class="form-group">
-            <label for="passwd">密码</label>
-            <input type="password" class="form-control" id="passwd" placeholder="请输入密码">
+            <label for="password">密码</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
         </div>
         <div class="checkbox text-left">
             <label>
@@ -105,8 +74,9 @@
         </div>
 
         <p style="text-align: right;color: red;position: absolute" id="info"></p><br/>
-        <button id="loginButton"  class="btn btn-success btn-block">登陆
-        </button>
+        <input type="submit" id="loginButton"  class="btn btn-success btn-block">
+        </input>
+        </form>
     </div>
 </div>
 <script>
@@ -188,36 +158,7 @@
         }
     })
 </script>
-<footer class="footer">
-    <div class="container">
-        我们是高品质的开发者社区，致力于为开发者提供一个分享创造、结识伙伴、协同互助的平台。
-        <br/><br/><br/>
-        <p>Designed by <span class="glyphicon glyphicon-heart"></span> value</p>
-    </div>
-    <div class="info">
-        <p style="text-align: center;font-size: 16px;">友情链接</p>
-        <ul >
-            <li><a>七牛云</a></li>
-            <li><a>Github</a></li>
-            <li><a>Segmentfault</a></li>
-            <li><a>V2ex</a></li>
-        </ul>
-    </div>
-    <div class="info">
-        <p style="text-align: center;font-size: 16px;">统计信息</p>
-        <ul >
-            <li>当前在线: 819</li>
-            <li>会员数: 19730</li>
-            <li>话题数: 5819</li>
-        </ul>
-    </div>
-    <div class="info" >
-        <p style="text-align: center;font-size: 16px;">其他信息</p>
-        <ul >
-            <li><a>推荐网站</a></li>
-            <li><a>关于我们</a></li>
-        </ul>
-    </div>
-</footer>
+<!-- 引入footer文件 -->
+<%@ include file="footer.jsp"%>
 </body>
 </html>

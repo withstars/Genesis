@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,20 +54,19 @@ a{
         <p>Designed by <span class="glyphicon glyphicon-heart"></span> value</p>
     </div>
     <div class="info">
-        <p style="text-align: center;font-size: 16px;">友情链接</p>
-        <ul >
-            <li><a>七牛云</a></li>
-            <li><a>Github</a></li>
-            <li><a>Segmentfault</a></li>
-            <li><a>V2ex</a></li>
-        </ul>
-    </div>
-    <div class="info">
         <p style="text-align: center;font-size: 16px;">统计信息</p>
         <ul >
             <li>当前在线: 819</li>
             <li>会员数: 19730</li>
             <li>话题数: 5819</li>
+        </ul>
+    </div>
+    <div class="info">
+        <p style="text-align: center;font-size: 16px;">友情链接</p>
+        <ul >
+            <li><a>Github</a></li>
+            <li><a>Segmentfault</a></li>
+            <li><a>V2ex</a></li>
         </ul>
     </div>
     <div class="info" >

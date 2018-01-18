@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,61 +49,37 @@
     </style>
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-default" role="navigation" style="background-color: white">
-        <div class="container-fluid" style="margin-left: 10%">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Coder Forum</a>
-            </div>
-            <div>
-                <!--向左对齐-->
-                <ul class="nav navbar-nav navbar-left">
-                    <li class="active"><a href="#">技术</a></li>
-                    <li><a href="#">好玩</a></li>
-                    <li><a href="#">工单</a></li>
-                    <li><a href="#">工作</a></li>
-                    <li><a href="#">程序员</a></li>
-                    <li><a href="#">最热</a></li>
-                </ul>
-                <!--向右对齐-->
+<!-- 引入header文件 -->
+<%@ include file="header.jsp"%>
 
-
-
-                <form class="navbar-form navbar-right" role="search">
-                    <input type="text" class="form-control" id="firstname" placeholder="搜索">
-                    <button type="submit" class="btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-
-                    <button type="button" class="btn btn-default btn-sm" >
-                        <span class="glyphicon glyphicon-user"></span>登陆
-                    </button>
-                </form>
-            </div>
-        </div>
-    </nav>
-
-</header>
 <div class="panel panel-default" id="main" style="width: 70%;margin:2% 2% 5% 5%;float: left;">
     <div class="panel-heading" style="background-color: white">
         <a style="margin-right: 2%">活跃</a><a style="margin-right: 2%">精华</a><a style="margin-right: 2%">投票</a><a style="margin-right: 2%">最近</a>
-</div>
+    </div>
 
 <ul class="list-group" style="width: 100%">
+    <c:forEach items="${topics}" var="topic">
     <li class="list-group-item">
-        <div style="height: auto">
-            <div style="float: left;width: 6%;margin-bottom: ">
+        <div style="height: 50px">
+            <div style="float: left;width: 6%;margin-bottom: 5px">
                 <img width="50px" height="50px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516705523&di=8ce297fa0fff1917be616a0995f6748a&imgtype=jpg&er=1&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F2cf5e0fe9925bc313db40d1c5edf8db1ca13704c.jpg" class="img-rounded">
             </div>
             <div style="width: 89%;float: left">
-                <a>Laravel 使用 Laravel-google-authenticator 拓展通过 Google 身份验证器为你的网站打造一个动态手机令牌</a><br/>
-                <p>Google</p>
+                <a href="/t?id=${topic.id}">${topic.title}</a><br/>
+                <div>
+                    <a><span class="label label-default" >技术</span></a>●
+                    <a><span ><strong>${topic.userId}</strong></span></a>●
+                    <small class="text-muted">${topic.localCreateTime}</small>●
+                    <small class="text-muted">最后回复来自:</small><a><span><strong>value</strong></span></a>
+                </div>
             </div>
             <div style="width: 5%;float: right;text-align: center">
-                <span class="badge">50</span>
+                <span class="badge">${topic.click}</span>
             </div>
         </div>
     </li>
+    </c:forEach>
+
 </ul>
 
 </div>
@@ -129,36 +107,7 @@
         <li class="list-group-item"><a>diyCode</a></li>
     </ul>
 </div>
-<footer class="footer" >
-    <div class="container">
-        我们是高品质的开发者社区，致力于为开发者提供一个分享创造、结识伙伴、协同互助的平台。
-        <br/><br/><br/>
-        <p>Designed by <span class="glyphicon glyphicon-heart"></span> value</p>
-    </div>
-    <div class="info">
-        <p style="text-align: center;font-size: 16px;">友情链接</p>
-        <ul >
-            <li><a>七牛云</a></li>
-            <li><a>Github</a></li>
-            <li><a>Segmentfault</a></li>
-            <li><a>V2ex</a></li>
-        </ul>
-    </div>
-    <div class="info">
-        <p style="text-align: center;font-size: 16px;">统计信息</p>
-        <ul >
-            <li>当前在线: 819</li>
-            <li>会员数: 19730</li>
-            <li>话题数: 5819</li>
-        </ul>
-    </div>
-    <div class="info" >
-        <p style="text-align: center;font-size: 16px;">其他信息</p>
-        <ul >
-            <li><a>推荐网站</a></li>
-            <li><a>关于我们</a></li>
-        </ul>
-    </div>
-</footer>
+<!-- 引入footer文件 -->
+<%@ include file="footer.jsp"%>
 </body>
 </html>
