@@ -19,7 +19,8 @@
   <sql id="Blob_Column_List" >
     content
   </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+
+  <select id="selectById" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     ,
@@ -27,6 +28,14 @@
     from topic
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="getAllTopics" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from topic
+    ORDER BY id DESC
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from topic
     where id = #{id,jdbcType=INTEGER}

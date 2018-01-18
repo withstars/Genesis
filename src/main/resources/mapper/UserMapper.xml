@@ -23,18 +23,26 @@
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where username = #{username,jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.withstars.domain.User" >
-    insert into user (id, username, password, 
+  <insert id="addUser" parameterType="com.withstars.domain.User" >
+    insert into user (username, password,
       email, phone_num, create_time, 
-      update_time, credit, avatar, 
+      update_time, credit,
       type)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{email,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{credit,jdbcType=INTEGER}, #{avatar,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{credit,jdbcType=INTEGER},
       #{type,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.withstars.domain.User" >
