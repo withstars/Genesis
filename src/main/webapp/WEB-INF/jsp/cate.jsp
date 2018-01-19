@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div style="width: 5%;float: right;text-align: center">
-                <span class="badge">${topic.click}</span>
+                <span class="badge">15</span>
             </div>
         </div>
     </li>
@@ -83,6 +83,36 @@
 </ul>
 
 </div>
+<c:if test="${empty uid}">
+<!-- 未登录 -->
+<div class="panel panel-default" id="sidebar2" style="width: 20%;margin:2% 2% 2% 0%;float: right">
+    <div class="panel-heading" style="background-color: white;text-align: center">
+        <blockquote>
+            Genesis
+            <small>一个分享创造的开发者社区</small>
+        </blockquote>
+    </div>
+    <ul class="list-group" style="width: 100%">
+        <li class="list-group-item"><a href="">创作新主题</a></li>
+        <li class="list-group-item"><a href="">0条未读提醒</a></li>
+        <li class="list-group-item"><a href="">积分:30</a></li>
+    </ul>
+</div>
+</c:if>
+
+<c:if test="${!empty uid}">
+<!-- 已登录 -->
+<div class="panel panel-default" id="sidebar2" style="width: 20%;margin:2% 2% 2% 0%;float: right">
+    <div class="panel-heading" style="background-color: white;text-align: center">
+        ${username}
+    </div>
+    <ul class="list-group" style="width: 100%">
+        <li class="list-group-item"><a href="">创作新主题</a></li>
+        <li class="list-group-item"><a href="">0条未读提醒</a></li>
+        <li class="list-group-item"><a href="">积分:30</a></li>
+    </ul>
+</div>
+</c:if>
 <div class="panel panel-default" id="sidebar1" style="width: 20%;margin:2% 2% 1% 0%;float: right">
     <div class="panel-heading" style="background-color: white;text-align: center">
        热门跟帖
@@ -95,18 +125,7 @@
         <li class="list-group-item"><a>每年更新成本</a></li>
     </ul>
 </div>
-<div class="panel panel-default" id="sidebar2" style="width: 20%;margin:0% 2% 5% 0%;float: right">
-    <div class="panel-heading" style="background-color: white;text-align: center">
-        伙伴社区
-    </div>
-    <ul class="list-group" style="width: 100%">
-        <li class="list-group-item"><a>GoLang中国</a></li>
-        <li class="list-group-item"><a>Ruby China</a></li>
-        <li class="list-group-item"><a>cnode</a></li>
-        <li class="list-group-item"><a>EasyWeChat</a></li>
-        <li class="list-group-item"><a>diyCode</a></li>
-    </ul>
-</div>
+
 <!-- 引入footer文件 -->
 <%@ include file="footer.jsp"%>
 </body>

@@ -13,19 +13,19 @@
                 <ul class="nav navbar-nav navbar-left">
                     <li <c:if test="${empty uid}">
                             class="active" </c:if>
-                    ><a href="/?tab=tech">技术</a>
+                    ><a href="/go?tab=tech">技术</a>
                     </li>
 
                     <li <c:if test="${empty uid}">
-                        </c:if>><a href="/?tab=play">好玩</a></li>
+                        </c:if>><a href="/go?tab=play">好玩</a></li>
                     <li <c:if test="${empty uid}">
-                        </c:if>><a href="/?tab=creative">创意</a></li>
+                        </c:if>><a href="/go?tab=creative">创意</a></li>
                     <li <c:if test="${empty uid}">
-                         </c:if>><a href="/?tab=jobs">工作</a></li>
+                         </c:if>><a href="/go?tab=jobs">工作</a></li>
                     <li <c:if test="${empty uid}">
-                        </c:if>><a href="/?tab=deals">交易</a></li>
+                        </c:if>><a href="/go?tab=deals">交易</a></li>
                     <li <c:if test="${empty uid}">
-                         </c:if>><a href="/?tab=all">全部</a></li>
+                         </c:if>><a href="/go?tab=all">全部</a></li>
                 </ul>
 
                 <!--向右对齐-->
