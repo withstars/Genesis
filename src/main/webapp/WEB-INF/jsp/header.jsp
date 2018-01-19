@@ -68,7 +68,7 @@
                         <p class="navbar-text"><a href="/settings">设置</a></p>
                     </li>
                     <li>
-                        <p class="navbar-text"><a href="/signout">登出</a></p>
+                        <p class="navbar-text"><a href="javascript:signout_confirm();">登出</a></p>
                     </li>
                 </ul>
             </c:if>
@@ -76,4 +76,19 @@
         </div>
     </nav>
 
+
 </header>
+<script>
+    function signout_confirm()
+    {
+        var r=confirm("确定退出?")
+        if (r==true)
+        {
+            window.location.href="/signout";
+        }
+        else
+        {
+
+        }
+    }
+</script>

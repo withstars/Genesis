@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Genesis - 一个分享创造的开发者社区  </title>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -93,9 +94,10 @@
         </blockquote>
     </div>
     <ul class="list-group" style="width: 100%">
-        <li class="list-group-item"><a href="">创作新主题</a></li>
-        <li class="list-group-item"><a href="">0条未读提醒</a></li>
-        <li class="list-group-item"><a href="">积分:30</a></li>
+        <li class="list-group-item">
+            <a  href="/signin" class="btn btn-primary btn-block">登录</a>
+            <a  href="/signup" class="btn btn-default btn-block">注册</a>
+        </li>
     </ul>
 </div>
 </c:if>
@@ -104,7 +106,7 @@
 <!-- 已登录 -->
 <div class="panel panel-default" id="sidebar2" style="width: 20%;margin:2% 2% 2% 0%;float: right">
     <div class="panel-heading" style="background-color: white;text-align: center">
-        ${username}
+        <a href="/member/${username}">${username}</a>
     </div>
     <ul class="list-group" style="width: 100%">
         <li class="list-group-item"><a href="">创作新主题</a></li>
@@ -113,6 +115,7 @@
     </ul>
 </div>
 </c:if>
+
 <div class="panel panel-default" id="sidebar1" style="width: 20%;margin:2% 2% 1% 0%;float: right">
     <div class="panel-heading" style="background-color: white;text-align: center">
        热门跟帖
