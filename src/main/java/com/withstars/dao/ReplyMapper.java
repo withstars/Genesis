@@ -2,6 +2,8 @@ package com.withstars.dao;
 
 import com.withstars.domain.Reply;
 
+import java.util.List;
+
 public interface ReplyMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -10,6 +12,8 @@ public interface ReplyMapper {
     int insertSelective(Reply record);
 
     Reply selectByPrimaryKey(Long id);
+
+    List<Reply> getRepliesOfTopic(Integer topicId);
 
     int updateByPrimaryKeySelective(Reply record);
 
