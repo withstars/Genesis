@@ -22,9 +22,9 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.withstars.domain.LoginLog" >
-    insert into login_log (id, user_id, login_time, 
+    insert into login_log (user_id, login_time,
       ip, device)
-    values (#{id,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, #{loginTime,jdbcType=TIMESTAMP}, 
+    values (#{userId,jdbcType=INTEGER}, #{loginTime,jdbcType=TIMESTAMP},
       #{ip,jdbcType=VARCHAR}, #{device,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.withstars.domain.LoginLog" >
