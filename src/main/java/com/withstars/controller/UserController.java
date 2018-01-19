@@ -1,6 +1,8 @@
 package com.withstars.controller;
 
+import com.withstars.domain.LoginLog;
 import com.withstars.domain.User;
+import com.withstars.service.impl.LoginLogServiceImpl;
 import com.withstars.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +13,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.security.MessageDigest;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 @Controller
 public class UserController {
 
     @Autowired
     public UserServiceImpl userService;
+
+    @Autowired
+    public LoginLogServiceImpl loginLogService;
 
     //生成MD5
     public static String getMD5(String message) {
@@ -83,14 +89,37 @@ public class UserController {
         String password=getMD5(request.getParameter("password"));
 
         String username=request.getParameter("username");
+        //验证用户名 密码
         if(userService.login(username,password)){
+            System.out.println("登录成功!");
             String uId=userService.getUserId(username);
+            //登录信息写入session
             request.getSession().setAttribute("uid",uId);
             request.getSession().setAttribute("username",username);
-            System.out.println("登陆成功!用户Id为"+uId);
+            //获取登录信息
+            String ip=getRemortIP(request);
+            Integer userId=Integer.parseInt(uId);
+            String Agent = request.getHeader("User-Agent");
+            StringTokenizer st = new StringTokenizer(Agent,";");
+            st.nextToken();
+            //得到用户的浏览器名
+            String userbrowser = st.nextToken();
+            System.out.println(userbrowser);
+            //写入登录日志
+            LoginLog log=new LoginLog();
+            log.setDevice(userbrowser);
+            log.setIp(ip);
+            log.setUserId(userId);
+            log.setLoginTime(new Date());
+            if(loginLogService.addLog(log)){
+                System.out.println("写入日志成功!");
+            }
+            else {
+                System.out.println("写入日志失败!");
+            }
             return "redirect:/";
         }else {
-            System.out.println("登陆失败!");
+            System.out.println("登录失败!");
             return "redirect:/signin";
         }
     }
@@ -102,4 +131,14 @@ public class UserController {
         request.getSession().removeAttribute("username");
         return "redirect:/";
     }
+
+    //获取客户端ip
+    public String getRemortIP(HttpServletRequest request) {
+        if (request.getHeader("x-forwarded-for") == null) {
+            return request.getRemoteAddr();
+        }
+        return request.getHeader("x-forwarded-for");
+    }
+
+
 }

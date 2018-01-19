@@ -10,13 +10,13 @@ import javax.jws.WebParam;
 public class MainController {
 
 
-
+    //进入登录页面
     @RequestMapping(value = {"/signin"})
     public ModelAndView signin(){
         ModelAndView signinPage=new ModelAndView("signin");
         return  signinPage;
     }
-
+    //进入注册页面
     @RequestMapping("/signup")
     public ModelAndView signup(){
         ModelAndView SignupPage=new ModelAndView("signup");
