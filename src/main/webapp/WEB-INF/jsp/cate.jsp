@@ -53,7 +53,7 @@
 <!-- 引入header文件 -->
 <%@ include file="header.jsp"%>
 
-<div class="panel panel-default" id="main" style="width: 70%;margin:2% 2% 5% 5%;float: left;">
+<div class="panel panel-default" id="main" style="width: 70%;margin:1% 2% 5% 5%;float: left;">
     <div class="panel-heading" style="background-color: white">
         <a style="margin-right: 2%">活跃</a><a style="margin-right: 2%">精华</a><a style="margin-right: 2%">投票</a><a style="margin-right: 2%">最近</a>
     </div>
@@ -84,50 +84,9 @@
 </ul>
 
 </div>
-<c:if test="${empty uid}">
-<!-- 未登录 -->
-<div class="panel panel-default" id="sidebar2" style="width: 20%;margin:2% 2% 2% 0%;float: right">
-    <div class="panel-heading" style="background-color: white;text-align: center">
-        <blockquote>
-            Genesis
-            <small>一个分享创造的开发者社区</small>
-        </blockquote>
-    </div>
-    <ul class="list-group" style="width: 100%">
-        <li class="list-group-item">
-            <a  href="/signin" class="btn btn-primary btn-block">登录</a>
-            <a  href="/signup" class="btn btn-default btn-block">注册</a>
-        </li>
-    </ul>
-</div>
-</c:if>
 
-<c:if test="${!empty uid}">
-<!-- 已登录 -->
-<div class="panel panel-default" id="sidebar2" style="width: 20%;margin:2% 2% 2% 0%;float: right">
-    <div class="panel-heading" style="background-color: white;text-align: center">
-        <a href="/member/${username}">${username}</a>
-    </div>
-    <ul class="list-group" style="width: 100%">
-        <li class="list-group-item"><a href="">创作新主题</a></li>
-        <li class="list-group-item"><a href="">0条未读提醒</a></li>
-        <li class="list-group-item"><a href="">积分:30</a></li>
-    </ul>
-</div>
-</c:if>
-
-<div class="panel panel-default" id="sidebar1" style="width: 20%;margin:2% 2% 1% 0%;float: right">
-    <div class="panel-heading" style="background-color: white;text-align: center">
-       热门跟帖
-    </div>
-    <ul class="list-group" style="width: 100%">
-        <li class="list-group-item"><a>免费域名注册</a></li>
-        <li class="list-group-item"><a>免费 Window 空间托管</a></li>
-        <li class="list-group-item"><a>图像的数量</a></li>
-        <li class="list-group-item"><a>24*7 支持</a></li>
-        <li class="list-group-item"><a>每年更新成本</a></li>
-    </ul>
-</div>
+<!-- 引入侧边栏文件 -->
+<%@ include file="side.jsp"%>
 
 <!-- 引入footer文件 -->
 <%@ include file="footer.jsp"%>

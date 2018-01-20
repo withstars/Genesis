@@ -12,8 +12,8 @@
 <body>
 <!-- 引入header文件 -->
 <%@ include file="header.jsp"%>
-
-<div class="panel panel-default" id="main" style="width: 70%;margin:2% 2% 1% 5%;float: left;">
+<div style="width: 70%;margin:1% 2% 1% 5%;float: left;">
+<div class="panel panel-default" id="main" style="">
     <div class="panel-heading" style="background-color: white">
         <h3>${topic.title}</h3><br/>
         <div>
@@ -31,9 +31,9 @@
 </div>
 
 <c:if test="${!empty replies}">
-<div class="panel panel-default" id="main" style="width: 70%;margin:1% 2% 1% 5%;float: left;">
+<div class="panel panel-default" id="main" style="">
     <div class="panel-heading" style="background-color: white">
-        <span>22 回复  |  直到 2018-01-19 11:20:23 +08:00</span>
+        <span>${repliesNum} 回复  |  直到 2018-01-19 11:20:23 +08:00</span>
     </div>
 
     <ul class="list-group" style="width: 100%">
@@ -62,19 +62,27 @@
 
 <c:if test="${!empty uid}">
 
-<div class="panel panel-default" id="main" style="width: 70%;margin:1% 2% 1% 5%;float: left;">
+<div class="panel panel-default" id="main" style="">
     <div class="panel-heading" style="background-color: white">
         添加一条新回复
     </div>
     <div class="panel-body">
         <div class="form-group">
-            <textarea class="form-control" rows="3"></textarea><br/>
-            <button type="button" class="btn btn-default btn-sm">回复</button>
+            <form action="/reply/add" method="post">
+                <input type="hidden" name="topicId" value="${topic.id}">
+                <input type="hidden" name="replyUserId" value="${uid}">
+                <textarea class="form-control" rows="3" name="content"></textarea><br/>
+            <input type="submit" class="btn btn-default btn-sm">
+            </form>
         </div>
 
     </div>
 </div>
 </c:if>
+
+</div>
+<!-- 引入侧边栏文件 -->
+<%@ include file="side.jsp"%>
 
 <!-- 引入footer文件 -->
 <%@ include file="footer.jsp"%>
