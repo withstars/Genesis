@@ -2,6 +2,8 @@ package com.withstars.dao;
 
 import com.withstars.domain.Tab;
 
+import java.util.List;
+
 public interface TabMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface TabMapper {
     int updateByPrimaryKeySelective(Tab record);
 
     int updateByPrimaryKey(Tab record);
+
+    List<Tab> getAllTabs();
 }

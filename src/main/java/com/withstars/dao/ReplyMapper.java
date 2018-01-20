@@ -20,4 +20,6 @@ public interface ReplyMapper {
     int updateByPrimaryKeyWithBLOBs(Reply record);
 
     int updateByPrimaryKey(Reply record);
+
+    int getRepliesNum(Integer topicId);
 }

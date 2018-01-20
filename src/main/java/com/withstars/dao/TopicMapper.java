@@ -20,4 +20,6 @@ public interface TopicMapper {
     int updateByPrimaryKey(Topic record);
 
     List<Topic> getAllTopics();
+
+    int clickAddOne(Integer id);
 }
