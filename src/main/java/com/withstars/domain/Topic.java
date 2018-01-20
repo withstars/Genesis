@@ -86,7 +86,7 @@ public class Topic {
 
     public String getLocalCreateTime() {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-M-dd HH:mm");//设置日期格式
-        String date = df.format(createTime);
+        String date = df.format(this.createTime);
         return date;
     }
     public String getLocalUpdateTime() {

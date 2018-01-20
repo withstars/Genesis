@@ -3,7 +3,7 @@ package com.withstars.domain;
 public class Tab {
     private Integer id;
 
-    private Integer tabName;
+    private String tabName;
 
     public Integer getId() {
         return id;
@@ -13,11 +13,11 @@ public class Tab {
         this.id = id;
     }
 
-    public Integer getTabName() {
+    public String getTabName() {
         return tabName;
     }
 
-    public void setTabName(Integer tabName) {
+    public void setTabName(String tabName) {
         this.tabName = tabName;
     }
 }
