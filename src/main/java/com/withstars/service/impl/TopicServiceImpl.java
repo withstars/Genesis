@@ -24,4 +24,12 @@ public class TopicServiceImpl implements TopicService {
         Topic topic=topicDao.selectById(id);
         return topic;
     }
+
+    public boolean addTopic(Topic topic) {
+        return topicDao.insert(topic)>0;
+    }
+
+    public boolean clickAddOne(Integer id) {
+        return topicDao.clickAddOne(id)>0;
+    }
 }

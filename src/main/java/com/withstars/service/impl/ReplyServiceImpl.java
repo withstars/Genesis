@@ -17,4 +17,12 @@ public class ReplyServiceImpl implements ReplyService {
     public List<Reply> getRepliesOfTopic(Integer topicId) {
         return replyDao.getRepliesOfTopic(topicId);
     }
+
+    public boolean addReply(Reply reply) {
+        return replyDao.insert(reply)>0;
+    }
+
+    public int repliesNum(Integer topicId) {
+        return replyDao.getRepliesNum(topicId);
+    }
 }
