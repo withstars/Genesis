@@ -35,18 +35,26 @@
     ORDER BY create_time ASC
   </select>
 
+  <select id="getRepliesNum" resultType="java.lang.Integer" parameterType="java.lang.Integer" >
+    SELECT count(id)
+    FROM reply
+    WHERE topic_id = #{topicId,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from reply
     where id = #{id,jdbcType=BIGINT}
   </delete>
+
   <insert id="insert" parameterType="com.withstars.domain.Reply" >
-    insert into reply (id, topic_id, reply_user_id, 
-      create_time, update_time, device, 
+    insert into reply (topic_id, reply_user_id,
+      create_time, update_time,
       content)
-    values (#{id,jdbcType=BIGINT}, #{topicId,jdbcType=INTEGER}, #{replyUserId,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{device,jdbcType=VARCHAR}, 
+    values ( #{topicId,jdbcType=INTEGER}, #{replyUserId,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
       #{content,jdbcType=LONGVARCHAR})
   </insert>
+
   <insert id="insertSelective" parameterType="com.withstars.domain.Reply" >
     insert into reply
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -96,6 +104,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.withstars.domain.Reply" >
     update reply
     <set >

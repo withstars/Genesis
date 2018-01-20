@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.withstars.dao.TabMapper" >
+
   <resultMap id="BaseResultMap" type="com.withstars.domain.Tab" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="tab_name" property="tabName" jdbcType="INTEGER" />
+    <result column="tab_name" property="tabName" jdbcType="VARCHAR" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     id, tab_name
   </sql>
+
+  <select id="getAllTabs" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    *
+    from tab
+    ORDER BY id ASC
+  </select>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from tab
     where id = #{id,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tab
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.withstars.domain.Tab" >
     insert into tab (id, tab_name)
     values (#{id,jdbcType=INTEGER}, #{tabName,jdbcType=INTEGER})

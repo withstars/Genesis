@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.withstars.dao.TopicMapper" >
+
   <resultMap id="BaseResultMap" type="com.withstars.domain.Topic" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
@@ -10,6 +11,7 @@
     <result column="click" property="click" jdbcType="INTEGER" />
     <result column="tab_id" property="tabId" jdbcType="TINYINT" />
   </resultMap>
+
   <resultMap id="ResultMapWithBLOBs" type="com.withstars.domain.Topic" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
@@ -40,14 +42,16 @@
     delete from topic
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.withstars.domain.Topic" >
-    insert into topic (id, user_id, create_time, 
-      update_time, title, click, 
+    insert into topic (user_id, create_time,
+      update_time, title,
       tab_id, content)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR}, #{click,jdbcType=INTEGER}, 
+    values ( #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP}, #{title,jdbcType=VARCHAR},
       #{tabId,jdbcType=TINYINT}, #{content,jdbcType=LONGVARCHAR})
   </insert>
+
   <insert id="insertSelective" parameterType="com.withstars.domain.Topic" >
     insert into topic
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -151,4 +155,13 @@
       tab_id = #{tabId,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <update id="clickAddOne" parameterType="java.lang.Integer" >
+    update topic
+    set
+    click = click+1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
 </mapper>
