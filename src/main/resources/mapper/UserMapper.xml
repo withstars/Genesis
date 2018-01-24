@@ -13,22 +13,35 @@
     <result column="avatar" property="avatar" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="TINYINT" />
   </resultMap>
+
   <sql id="Base_Column_List" >
     id, username, password, email, phone_num, create_time, update_time, credit, avatar, 
     type
   </sql>
+
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
+    select
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="getUserCount" resultType="java.lang.Integer" >
+    select
+    count(*)
+    from user
+  </select>
+
 
   <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select
     <include refid="Base_Column_List" />
     from user
     where username = #{username,jdbcType=VARCHAR}
+  </select>
+
+  <select id="existUsername" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT count(*) from user where username = #{username,jdbcType=VARCHAR}
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -157,5 +170,9 @@
       avatar = #{avatar,jdbcType=VARCHAR},
       type = #{type,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="addCredit">
+    update user set credit = credit + #{points,jdbcType=INTEGER} WHERE id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
