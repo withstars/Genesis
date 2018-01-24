@@ -7,7 +7,7 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Genesis - 一个分享创造的开发者社区  </title>
+    <title>${topic.title} - Genesis </title>
 </head>
 <body>
 <!-- 引入header文件 -->
@@ -15,6 +15,9 @@
 <div style="width: 70%;margin:1% 2% 1% 5%;float: left;">
 <div class="panel panel-default" id="main" style="">
     <div class="panel-heading" style="background-color: white">
+        <div class="panel-heading" style="background-color: white">
+            <a href="/">Genesis</a> › 新主题
+        </div>
         <h3>${topic.title}</h3><br/>
         <div>
             <a><span ><strong>${topic.userId}</strong></span></a>●
@@ -60,7 +63,7 @@
 </div>
 </c:if>
 
-<c:if test="${!empty uid}">
+<c:if test="${!empty user}">
 
 <div class="panel panel-default" id="main" style="">
     <div class="panel-heading" style="background-color: white">
@@ -70,8 +73,8 @@
         <div class="form-group">
             <form action="/reply/add" method="post">
                 <input type="hidden" name="topicId" value="${topic.id}">
-                <input type="hidden" name="replyUserId" value="${uid}">
-                <textarea class="form-control" rows="3" name="content"></textarea><br/>
+                <input type="hidden" name="replyUserId" value="${user.id}">
+                <textarea class="form-control" rows="3" name="content" required="required"></textarea><br/>
             <input type="submit" class="btn btn-default btn-sm">
             </form>
         </div>
