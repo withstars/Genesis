@@ -7,7 +7,7 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Genesis - 一个分享创造的开发者社区  </title>
+    <title>创作新主题 › Genesis </title>
 </head>
 <body>
 <!-- 引入header文件 -->
@@ -23,7 +23,7 @@
             <form action="/topic/add" method="post" id="replyForm">
                 <div class="form-group">
                     <label for="title">主题标题</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="请输入主题标题，如果标题能够表达完整内容，则正文可以为空">
+                    <input type="text" class="form-control" id="title" name="title" placeholder="请输入主题标题，如果标题能够表达完整内容，则正文可以为空" required="required">
                 </div>
                 <div class="form-group">
                     <label for="content">正文</label>
