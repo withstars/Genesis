@@ -31,11 +31,18 @@
     where id = #{id,jdbcType=INTEGER}
   </select>
 
+
   <select id="getAllTopics" resultMap="BaseResultMap" >
     select
     <include refid="Base_Column_List" />
     from topic
     ORDER BY id DESC
+  </select>
+
+  <select id="getTopicsNum" resultType="java.lang.Integer" >
+    select
+    COUNT(*)
+    from topic
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
