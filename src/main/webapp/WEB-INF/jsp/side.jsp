@@ -3,7 +3,7 @@
 
 
 
-<c:if test="${empty uid}">
+<c:if test="${empty user}">
     <!-- 未登录 -->
     <div class="panel panel-default" id="sidebar2" style="width: 20%;margin:1% 2% 1% 0%;float: right">
         <div class="panel-heading" style="background-color: white;text-align: center">
@@ -21,7 +21,7 @@
     </div>
 </c:if>
 
-<c:if test="${!empty uid}">
+<c:if test="${!empty user}">
     <!-- 已登录 -->
     <div class="panel panel-default" id="sidebar2" style="width: 20%;margin:1% 2% 1% 0%;float: right">
         <div class="panel-heading" style="background-color: white;text-align: center">
@@ -30,7 +30,7 @@
         <ul class="list-group" style="width: 100%">
             <li class="list-group-item"><a href="/new">创作新主题</a></li>
             <li class="list-group-item"><a href="">0条未读提醒</a></li>
-            <li class="list-group-item"><a href="">积分:30</a></li>
+            <li class="list-group-item"><a href="">积分:${user.credit}</a></li>
         </ul>
     </div>
 </c:if>
