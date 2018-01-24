@@ -22,4 +22,7 @@ public interface TopicMapper {
     List<Topic> getAllTopics();
 
     int clickAddOne(Integer id);
+
+    //获取主题总数
+    int getTopicsNum();
 }
