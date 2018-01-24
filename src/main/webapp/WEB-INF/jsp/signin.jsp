@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Genesis - 一个分享创造的开发者社区  </title>
+    <title>登录 - Genesis</title>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -61,11 +61,11 @@
         <form action="/signin/do" method="post">
         <div class="form-group">
             <label for="username">用户名</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
+            <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名" required="required">
         </div>
         <div class="form-group">
             <label for="password">密码</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码">
+            <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码" required="required">
         </div>
         <div class="checkbox text-left">
             <label>
