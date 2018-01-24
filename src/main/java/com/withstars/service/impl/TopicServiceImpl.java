@@ -32,4 +32,8 @@ public class TopicServiceImpl implements TopicService {
     public boolean clickAddOne(Integer id) {
         return topicDao.clickAddOne(id)>0;
     }
+
+    public int getTopicsNum() {
+        return topicDao.getTopicsNum();
+    }
 }
