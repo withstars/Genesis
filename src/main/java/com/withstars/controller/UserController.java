@@ -3,9 +3,11 @@ package com.withstars.controller;
 import com.withstars.domain.LoginLog;
 import com.withstars.domain.User;
 import com.withstars.service.impl.LoginLogServiceImpl;
+import com.withstars.service.impl.TopicServiceImpl;
 import com.withstars.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,6 +25,9 @@ public class UserController {
 
     @Autowired
     public LoginLogServiceImpl loginLogService;
+
+    @Autowired
+    public TopicServiceImpl topicService;
 
     //生成MD5
     public static String getMD5(String message) {
@@ -85,24 +90,26 @@ public class UserController {
     //用户登陆
     @RequestMapping("/signin/do")
     public String signin(HttpServletRequest request, RedirectAttributes redirect){
-        //处理前端密码
+        //处理参数
         String password=getMD5(request.getParameter("password"));
-
         String username=request.getParameter("username");
-        //验证用户名 密码
-        if(userService.login(username,password)){
+        //验证用户名密码
+        int loginVerify=userService.login(username,password);
+
+        if(loginVerify == 2){
             System.out.println("登录成功!");
-            String uId=userService.getUserId(username);
-            //登录信息写入session
-            request.getSession().setAttribute("uid",uId);
-            request.getSession().setAttribute("username",username);
+            User user =userService.getUserByUsername(username);
+            Integer userId=user.getId();
+            //添加积分
+            boolean ifSuccAddCredit=userService.addCredit(5,userId);
+            //用户信息写入session
+            request.getSession().setAttribute("user",user);
             //获取登录信息
             String ip=getRemortIP(request);
-            Integer userId=Integer.parseInt(uId);
             String Agent = request.getHeader("User-Agent");
             StringTokenizer st = new StringTokenizer(Agent,";");
             st.nextToken();
-            //得到用户的浏览器名
+            //获取用户的浏览器名
             String userbrowser = st.nextToken();
             System.out.println(userbrowser);
             //写入登录日志
@@ -111,24 +118,24 @@ public class UserController {
             log.setIp(ip);
             log.setUserId(userId);
             log.setLoginTime(new Date());
-            if(loginLogService.addLog(log)){
-                System.out.println("写入日志成功!");
-            }
-            else {
-                System.out.println("写入日志失败!");
-            }
+            boolean ifSuccAddLog=loginLogService.addLog(log);
+
             return "redirect:/";
+        }else if (loginVerify == 1){
+
+            System.out.println("密码错误!");
+            return "redirect:/signin";
         }else {
-            System.out.println("登录失败!");
+
+            System.out.println("用户名不存在!");
             return "redirect:/signin";
         }
     }
 
     //用户登出
     @RequestMapping("/signout")
-    public String signout(HttpServletRequest request, RedirectAttributes redirect){
-        request.getSession().removeAttribute("uid");
-        request.getSession().removeAttribute("username");
+    public String signout(HttpServletRequest request){
+        request.getSession().removeAttribute("user");
         return "redirect:/";
     }
 
@@ -138,6 +145,29 @@ public class UserController {
             return request.getRemoteAddr();
         }
         return request.getHeader("x-forwarded-for");
+    }
+
+    //用户个人主页
+    @RequestMapping("/member/{username}")
+    public ModelAndView personalCenter(@PathVariable("username")String username,HttpServletRequest request,RedirectAttributes redirect){
+        boolean ifExistUser=userService.existUsername(username);
+        //获取统计信息
+        int topicsNum=topicService.getTopicsNum();
+        int usersNum=userService.getUserCount();
+
+        ModelAndView mv=new ModelAndView("user_info");
+        if (ifExistUser){
+            User user=userService.getUserByUsername(username);
+            mv.addObject("userInfo",user);
+            mv.addObject("topicsNum",topicsNum);
+            mv.addObject("usersNum",usersNum);
+            return mv;
+        }else {
+            String errorInfo="会员未找到";
+            mv.addObject("errorInfo",errorInfo);
+            return mv;
+        }
+
     }
 
 
