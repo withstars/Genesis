@@ -2,8 +2,10 @@ package com.withstars.controller;
 
 import com.withstars.domain.Reply;
 import com.withstars.domain.Topic;
+import com.withstars.domain.User;
 import com.withstars.service.impl.ReplyServiceImpl;
 import com.withstars.service.impl.TopicServiceImpl;
+import com.withstars.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,14 +23,22 @@ public class TopicController {
     public TopicServiceImpl topicService;
     @Autowired
     public ReplyServiceImpl replyService;
+    @Autowired
+    public UserServiceImpl userService;
 
     //渲染首页
     @RequestMapping("/")
     public ModelAndView toMain(){
         ModelAndView indexPage=new ModelAndView("cate");
-
+        //全部主题
         List<Topic> topics=topicService.getAllTopics();
+        //获取统计信息
+        int topicsNum=topicService.getTopicsNum();
+        int usersNum=userService.getUserCount();
+
         indexPage.addObject("topics",topics);
+        indexPage.addObject("topicsNum",topicsNum);
+        indexPage.addObject("usersNum",usersNum);
         return  indexPage;
     }
 
@@ -46,11 +56,16 @@ public class TopicController {
         List<Reply> replies=replyService.getRepliesOfTopic(tid);
         //获取评论数
         int repliesNum=replyService.repliesNum(tid);
+        //获取统计信息
+        int topicsNum=topicService.getTopicsNum();
+        int usersNum=userService.getUserCount();
         //渲染视图
         ModelAndView topicPage=new ModelAndView("detail");
         topicPage.addObject("topic",topic);
         topicPage.addObject("replies",replies);
         topicPage.addObject("repliesNum",repliesNum);
+        topicPage.addObject("topicsNum",topicsNum);
+        topicPage.addObject("usersNum",usersNum);
         return topicPage;
     }
 
@@ -59,12 +74,13 @@ public class TopicController {
     public ModelAndView addTopic(HttpServletRequest request, RedirectAttributes redirect){
         ModelAndView indexPage;
         //未登陆
-        if(request.getSession().getAttribute("uid")==null){
+        if(request.getSession().getAttribute("user")==null){
             indexPage=new ModelAndView("redirect:/signin");
             return  indexPage;
         }
         //处理参数
-        Integer userId=Integer.parseInt((String)request.getSession().getAttribute("uid"));
+        User user=(User)request.getSession().getAttribute("user");
+        Integer userId=user.getId();
 
         String title=request.getParameter("title");
         String content=request.getParameter("content");
