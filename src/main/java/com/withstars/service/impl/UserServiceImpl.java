@@ -11,24 +11,43 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public UserMapper userDao;
 
+    //用户注册
     public boolean addUser(User user) {
         return userDao.addUser(user)>0;
     }
 
-    //判断登陆用户名密码
-    public boolean login(String username,String password) {
-
-        User resUser=userDao.selectByUsername(username);
-        if (resUser.getPassword().equals(password)){
-            return true;
+    //登录验证 0:用户名不存在 1:密码错误 2:验证成功
+    public int login(String username,String password) {
+        //判断username是否存在
+        boolean existUsername=existUsername(username);
+        //若username存在，验证密码
+        if (existUsername){
+            User resUser=userDao.selectByUsername(username);
+            if (resUser.getPassword().equals(password)){
+                return 2;
+            }
+            return 1;
         }
-        return false;
-    }
-    //登陆后得到用户ID
-    public String getUserId(String username){
-        User resUser=userDao.selectByUsername(username);
-        String uId=""+resUser.getId();
-        return uId;
+        return 0;
     }
 
+    //登陆后获取用户信息
+    public User getUserByUsername(String username){
+        User resUser=userDao.selectByUsername(username);
+        return resUser;
+    }
+
+    //增加积分
+    public boolean addCredit(Integer points,Integer id) {
+        return userDao.addCredit(points,id)>0;
+    }
+
+    //username是否存在
+    public boolean existUsername(String username) {
+        return userDao.existUsername(username)==1;
+    }
+
+    public int getUserCount() {
+        return userDao.getUserCount();
+    }
 }
