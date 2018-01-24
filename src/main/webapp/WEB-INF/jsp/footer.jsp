@@ -56,24 +56,24 @@ a{
     <div class="info">
         <p style="text-align: center;font-size: 16px;">统计信息</p>
         <ul >
-            <li>当前在线: 819</li>
-            <li>会员数: 19730</li>
-            <li>话题数: 5819</li>
+            <li>当前在线:  ${usersNum}</li>
+            <li>会员数: ${usersNum}</li>
+            <li>话题数: ${topicsNum}</li>
         </ul>
     </div>
     <div class="info">
         <p style="text-align: center;font-size: 16px;">友情链接</p>
         <ul >
-            <li><a>Github</a></li>
-            <li><a>Segmentfault</a></li>
-            <li><a>V2ex</a></li>
+            <li><a href="/">Github</a></li>
+            <li><a href="/">Segmentfault</a></li>
+            <li><a href="/">v2ex</a></li>
         </ul>
     </div>
     <div class="info" >
         <p style="text-align: center;font-size: 16px;">其他信息</p>
         <ul >
-            <li><a>推荐网站</a></li>
-            <li><a>关于我们</a></li>
+            <li><a href="/">关于本站</a></li>
+            <li><a href="/">联系我们</a></li>
         </ul>
     </div>
 </footer>
