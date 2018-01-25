@@ -1,8 +1,9 @@
 package com.withstars.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class LoginLog {
+public class LoginLog implements Serializable {
     private Long id;
 
     private Integer userId;

@@ -1,6 +1,8 @@
 package com.withstars.domain;
 
-public class Tab {
+import java.io.Serializable;
+
+public class Tab implements Serializable {
     private Integer id;
 
     private String tabName;
