@@ -11,9 +11,5 @@ public class LoginLogController {
     public LoginLogServiceImpl loginLogService;
 
 
-
-
-
-
 }
 

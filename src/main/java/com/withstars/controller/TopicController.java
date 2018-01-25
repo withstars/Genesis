@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 @Controller
 public class TopicController {
 
@@ -25,7 +29,8 @@ public class TopicController {
     public ReplyServiceImpl replyService;
     @Autowired
     public UserServiceImpl userService;
-
+    //log4j对象
+    private final Log log = LogFactory.getLog(getClass());
     //渲染首页
     @RequestMapping("/")
     public ModelAndView toMain(){
@@ -96,7 +101,9 @@ public class TopicController {
         //添加topic
         boolean ifSucc=topicService.addTopic(topic);
         if (ifSucc){
-            System.out.println("添加主题成功!");
+            if (log.isInfoEnabled()){
+                log.info("添加主题成功!");
+            }
         }
         indexPage=new ModelAndView("redirect:/");
 
