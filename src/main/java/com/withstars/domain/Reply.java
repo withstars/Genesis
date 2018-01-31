@@ -3,6 +3,9 @@ package com.withstars.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 回复实体类
+ */
 public class Reply implements Serializable {
     private Long id;
 
@@ -17,6 +20,11 @@ public class Reply implements Serializable {
     private String device;
 
     private String content;
+
+    @Override
+    public String toString() {
+        return "该回复id为"+id+",主题id为"+topicId+",用户id为"+replyUserId+",发表时间为"+createTime+",更新时间为"+updateTime+",用户设备为"+device+",回复内容为"+content;
+    }
 
     public Long getId() {
         return id;

@@ -3,6 +3,9 @@ package com.withstars.domain;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 登录日志实体类
+ */
 public class LoginLog implements Serializable {
     private Long id;
 
@@ -13,6 +16,11 @@ public class LoginLog implements Serializable {
     private String ip;
 
     private String device;
+
+    @Override
+    public String toString() {
+        return "该条登录日志id为"+id+",用户id为"+userId+",登录时间为+"+loginTime+",ip为"+ip+"用户设备为"+device;
+    }
 
     public Long getId() {
         return id;

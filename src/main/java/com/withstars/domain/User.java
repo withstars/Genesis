@@ -1,8 +1,12 @@
 package com.withstars.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 用户信息实体类
+ */
 public class User implements Serializable{
     private Integer id;
 
@@ -23,6 +27,11 @@ public class User implements Serializable{
     private String avatar;
 
     private Byte type;
+
+    @Override
+    public String toString() {
+        return "该用户id为"+id+"用户名为"+username+",email为"+email+",手机号为"+phoneNum+",注册时间为"+createTime+",更新时间为"+updateTime+",积分为"+credit+",头像url为"+avatar+",用户类型为"+type;
+    }
 
     public Integer getId() {
         return id;
@@ -102,5 +111,16 @@ public class User implements Serializable{
 
     public void setType(Byte type) {
         this.type = type;
+    }
+
+    public String getLocalCreateTime() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-M-dd HH:mm");//设置日期格式
+        String date = df.format(this.createTime);
+        return date;
+    }
+    public String getLocalUpdateTime() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-M-dd HH:mm");//设置日期格式
+        String date = df.format(updateTime);
+        return date;
     }
 }
