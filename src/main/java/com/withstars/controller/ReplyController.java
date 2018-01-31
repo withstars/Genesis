@@ -12,12 +12,18 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
+/**
+ * 回复相关控制类
+ */
 @Controller
 public class ReplyController {
 
     @Autowired
     public ReplyServiceImpl replyService;
 
+    /**
+     * 添加评论
+     */
     @RequestMapping(value = "/reply/add",method = RequestMethod.POST)
     public ModelAndView addReply(HttpServletRequest request, RedirectAttributes redirect){
         //处理参数

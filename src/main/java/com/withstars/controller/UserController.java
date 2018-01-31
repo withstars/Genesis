@@ -17,6 +17,9 @@ import java.security.MessageDigest;
 import java.util.Date;
 import java.util.StringTokenizer;
 
+/**
+ * 用户相关控制类
+ */
 @Controller
 public class UserController {
 
@@ -29,7 +32,9 @@ public class UserController {
     @Autowired
     public TopicServiceImpl topicService;
 
-    //生成MD5
+    /**
+     * 生成MD5值
+     */
     public static String getMD5(String message) {
         String md5 = "";
         try {
@@ -42,7 +47,10 @@ public class UserController {
         }
         return md5;
     }
-    // 二进制转十六进制
+
+    /**
+     * 二进制转十六进制
+     */
     public static String bytesToHex(byte[] bytes) {
         StringBuffer hexStr = new StringBuffer();
         int num;
@@ -59,7 +67,9 @@ public class UserController {
         return hexStr.toString().toUpperCase();
     }
 
-    //用户注册
+    /**
+     * 用户注册
+     */
     @RequestMapping("/user/add/do")
     public String addUser(HttpServletRequest request, RedirectAttributes redirect){
         //新建User对象
@@ -87,7 +97,9 @@ public class UserController {
         return "redirect:/";
     }
 
-    //用户登陆
+    /**
+     * 用户登陆
+     */
     @RequestMapping("/signin/do")
     public String signin(HttpServletRequest request, RedirectAttributes redirect){
         //处理参数
@@ -132,14 +144,18 @@ public class UserController {
         }
     }
 
-    //用户登出
+    /**
+     * 用户登出
+     */
     @RequestMapping("/signout")
     public String signout(HttpServletRequest request){
         request.getSession().removeAttribute("user");
         return "redirect:/";
     }
 
-    //获取客户端ip
+    /**
+     * 获取客户端IP
+     */
     public String getRemortIP(HttpServletRequest request) {
         if (request.getHeader("x-forwarded-for") == null) {
             return request.getRemoteAddr();
@@ -147,7 +163,9 @@ public class UserController {
         return request.getHeader("x-forwarded-for");
     }
 
-    //用户个人主页
+    /**
+     * 用户个人主页
+     */
     @RequestMapping("/member/{username}")
     public ModelAndView personalCenter(@PathVariable("username")String username,HttpServletRequest request,RedirectAttributes redirect){
         boolean ifExistUser=userService.existUsername(username);
@@ -163,7 +181,7 @@ public class UserController {
             mv.addObject("usersNum",usersNum);
             return mv;
         }else {
-            String errorInfo="会员未找到";
+            String errorInfo=new String("会员未找到");
             mv.addObject("errorInfo",errorInfo);
             return mv;
         }

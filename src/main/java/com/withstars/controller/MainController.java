@@ -13,6 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.jws.WebParam;
 import java.util.List;
 
+/**
+ * 主控制类
+ */
 @Controller
 public class MainController {
 
@@ -25,8 +28,9 @@ public class MainController {
     @Autowired
     public TabServiceImpl tabService;
 
-
-    //进入登录页面
+    /**
+     * 进入登录页面.
+     */
     @RequestMapping(value = {"/signin"})
     public ModelAndView signin(){
         ModelAndView signinPage=new ModelAndView("signin");
@@ -39,7 +43,10 @@ public class MainController {
         signinPage.addObject("usersNum",usersNum);
         return  signinPage;
     }
-    //进入注册页面
+
+    /**
+     * 进入注册页面.
+     */
     @RequestMapping("/signup")
     public ModelAndView signup(){
         ModelAndView signupPage=new ModelAndView("signup");
@@ -53,7 +60,9 @@ public class MainController {
         return  signupPage;
     }
 
-    //进入新建主题页面
+    /**
+     * 进入新建主题页面
+     */
     @RequestMapping(value = {"/new"})
     public ModelAndView newTopic(){
         ModelAndView newTopicPage=new ModelAndView("new");

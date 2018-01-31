@@ -20,6 +20,9 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+/**
+ * 主题相关控制类
+ */
 @Controller
 public class TopicController {
 
@@ -31,7 +34,10 @@ public class TopicController {
     public UserServiceImpl userService;
     //log4j对象
     private final Log log = LogFactory.getLog(getClass());
-    //渲染首页
+
+    /**
+     * 渲染首页
+     */
     @RequestMapping("/")
     public ModelAndView toMain(){
         ModelAndView indexPage=new ModelAndView("cate");
@@ -47,7 +53,9 @@ public class TopicController {
         return  indexPage;
     }
 
-    //渲染指定主题页面
+    /**
+     * 渲染指定主题页面
+     */
     @RequestMapping("/t")
     public ModelAndView toTopic(HttpServletRequest request, RedirectAttributes redirect){
         //获取主题id
@@ -74,7 +82,9 @@ public class TopicController {
         return topicPage;
     }
 
-    //发表主题
+    /**
+     * 发表主题
+     */
     @RequestMapping("/topic/add")
     public ModelAndView addTopic(HttpServletRequest request, RedirectAttributes redirect){
         ModelAndView indexPage;
