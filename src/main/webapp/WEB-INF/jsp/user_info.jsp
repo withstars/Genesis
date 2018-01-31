@@ -7,11 +7,60 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Genesis › <c:if test="${!empty userInfo}">${userInfo.username}</c:if><c:if test="${!empty errorInfo}">${errorInfo}</c:if></title>
+    <title>Genesis › <c:if test="${!empty userInfo}">${userInfo.username}</c:if><c:if test="${!empty errorInfo}">会员未找到</c:if></title>
 </head>
 <body>
 <!-- 引入header文件 -->
 <%@ include file="header.jsp"%>
+
+<div style="width: 70%;margin:1% 2% 1% 5%;float: left;">
+    <div class="panel panel-default" id="main" style="">
+        <div class="panel-heading" style="background-color: white">
+            <a href="/">Genesis</a> › ${userInfo.username}
+        </div>
+
+        <div class="panel-body">
+            <c:if test="${!empty userInfo}">
+            <form class="form-horizontal" role="form">
+                <div style="margin-left: 17%">
+                    <img width="60px" height="60px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516705523&di=8ce297fa0fff1917be616a0995f6748a&imgtype=jpg&er=1&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F2cf5e0fe9925bc313db40d1c5edf8db1ca13704c.jpg" class="img-rounded">
+                </div><br/>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">id</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static">${userInfo.id}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static">${userInfo.email}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">注册时间</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static">${userInfo.localCreateTime}</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">积分</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static">${userInfo.credit}</p>
+                    </div>
+                </div>
+            </form>
+            </c:if>
+            <c:if test="${!empty errorInfo}">
+                会员未找到!
+            </c:if>
+        </div>
+
+    </div>
+
+
+
+</div>
 
 <!-- 引入侧边栏文件 -->
 <%@ include file="side.jsp"%>

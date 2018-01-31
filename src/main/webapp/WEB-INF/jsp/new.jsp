@@ -13,7 +13,7 @@
 <!-- 引入header文件 -->
 <%@ include file="header.jsp"%>
 
-<div style="width: 70%;margin:1% 2% 1% 5%;float: left;">
+    <div style="width: 70%;margin:1% 2% 1% 5%;float: left;">
     <div class="panel panel-default" id="main" style="">
         <div class="panel-heading" style="background-color: white">
             <a href="/">Genesis</a> › 创作新主题
@@ -74,7 +74,7 @@
     </div>
 
 
-<div class="panel panel-default" id="sidebar1" style="width: 20%;margin:1% 2% 1% 0%;float: right">
+    <div class="panel panel-default" id="sidebar1" style="width: 20%;margin:1% 2% 1% 0%;float: right">
     <div class="panel-heading" style="background-color: white;text-align: center">
         社区指导原则
     </div>
