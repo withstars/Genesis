@@ -5,9 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <title>登录 - Genesis</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/jquery-3.2.1.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/js.cookie.js"></script>
+
     <style>
         li {list-style-type:none;}
         html, body {
@@ -58,14 +60,14 @@
         <h3 class="panel-title">登录</h3>
     </div>
     <div class="panel-body">
-        <form action="/signin/do" method="post">
+
         <div class="form-group">
             <label for="username">用户名</label>
             <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名" required="required">
         </div>
         <div class="form-group">
             <label for="password">密码</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码" required="required">
+            <input type="password" class="form-control" id="passwd" name="password" placeholder="请输入密码" required="required">
         </div>
         <div class="checkbox text-left">
             <label>
@@ -75,9 +77,9 @@
         </div>
 
         <p style="text-align: right;color: red;position: absolute" id="info"></p><br/>
-        <input type="submit" id="loginButton"  class="btn btn-success btn-block">
+            <button id="loginButton" class="btn btn-success btn-block">登录</button>
         </input>
-        </form>
+
     </div>
 </div>
 <script>
@@ -106,7 +108,7 @@
             var loginStatus
             try {
                 loginStatus = JSON.parse(loginStatusText);
-                $('#id').val(loginStatus.username);
+                $('#username').val(loginStatus.username);
                 $('#passwd').val(loginStatus.password);
                 $("#remember").prop('checked',true);
             } catch (__) {}
@@ -115,7 +117,7 @@
     // 设置登录信息
     setLoginStatus();
     $("#loginButton").click(function () {
-        var id =$("#id").val();
+        var id =$("#username").val();
         var passwd=$("#passwd").val();
         var remember=$("#remember").prop('checked');
         if( id=='' && passwd==''){
@@ -127,24 +129,20 @@
         else if( passwd ==''){
             $("#info").text("提示:密码不能为空");
         }
-        else if(isNaN( id )){
-            $("#info").text("提示:账号必须为数字");
-        }
         else {
             $.ajax({
                 type: "POST",
                 url: "/api/loginCheck",
                 data: {
-                    id:id ,
-                    passwd: passwd
+                    username:id ,
+                    password: passwd
                 },
                 dataType: "json",
                 success: function(data) {
                     if(data.stateCode.trim() == "0") {
-                        $("#info").text("提示:账号或密码错误！");
+                        $("#info").text("提示:用户名不存在!");
                     } else if(data.stateCode.trim() == "1") {
-                        $("#info").text("提示:登陆成功，跳转中...");
-                        window.location.href="/admin_main.html";
+                        $("#info").text("提示:密码错误!");
                     } else if(data.stateCode.trim() == "2"){
                         if(remember){
                             rememberLogin(id,passwd,remember);
@@ -152,7 +150,7 @@
                             Cookies.remove('loginStatus');
                         }
                         $("#info").text("提示:登陆成功，跳转中...");
-                        window.location.href="/reader_main.html";
+                        window.location.href="/";
                     }
                 }
             });

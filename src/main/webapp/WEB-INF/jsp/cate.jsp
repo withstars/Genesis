@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Genesis - 一个分享创造的开发者社区  </title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/jquery-3.2.1.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <style>
         li {list-style-type:none;}
         html, body {
@@ -68,14 +68,13 @@
             <div style="width: 89%;float: left">
                 <a href="/t?id=${topic.id}">${topic.title}</a><br/>
                 <div>
-                    <a><span class="label label-default" >技术</span></a>●
-                    <a><span ><strong>${topic.userId}</strong></span></a>●
-                    <small class="text-muted">${topic.localCreateTime}</small>●
-                    <small class="text-muted">最后回复来自:</small><a><span><strong>value</strong></span></a>
+                    <a><span class="label label-default" >${topic.tab.tabName}</span></a>●
+                    <a href="/member/${topic.user.username}"><span ><strong>${topic.user.username}</strong></span></a>●
+                    <small class="text-muted">${topic.localCreateTime}</small>
                 </div>
             </div>
             <div style="width: 5%;float: right;text-align: center">
-                <span class="badge">15</span>
+                <span class="badge">${topic.countReplies}</span>
             </div>
         </div>
     </li>

@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <title>注册 - Genesis</title>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/jquery-3.2.1.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <style>
         li {list-style-type:none;}
         html, body {
