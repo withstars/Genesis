@@ -1,6 +1,7 @@
 package com.withstars.domain;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 主题板块实体类
@@ -10,9 +11,18 @@ public class Tab implements Serializable {
 
     private String tabName;
 
+    private List<Topic> topics;
     @Override
     public String toString() {
-        return "该板块id为"+id+",板块名为"+tabName;
+        return "Tab{"+"id="+id+",tabName="+tabName+"}";
+    }
+
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
+    }
+
+    public List<Topic> getTopics() {
+        return topics;
     }
 
     public Integer getId() {

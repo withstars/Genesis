@@ -19,7 +19,7 @@ public class LoginLog implements Serializable {
 
     @Override
     public String toString() {
-        return "该条登录日志id为"+id+",用户id为"+userId+",登录时间为+"+loginTime+",ip为"+ip+"用户设备为"+device;
+        return "LoginLog{"+"id="+id+",userId="+userId+",loginTime="+loginTime+",ip="+ip+",device"+device+"}";
     }
 
     public Long getId() {

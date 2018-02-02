@@ -7,6 +7,8 @@ import java.util.Date;
  * 回复实体类
  */
 public class Reply implements Serializable {
+    private User user;
+
     private Long id;
 
     private Integer topicId;
@@ -23,7 +25,15 @@ public class Reply implements Serializable {
 
     @Override
     public String toString() {
-        return "该回复id为"+id+",主题id为"+topicId+",用户id为"+replyUserId+",发表时间为"+createTime+",更新时间为"+updateTime+",用户设备为"+device+",回复内容为"+content;
+        return "Reply{"+"id="+id+",topicId="+topicId+",replyUserId"+replyUserId+",createTime="+createTime+",updateTime="+updateTime+",device="+device+",content="+content+"}";
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public Long getId() {

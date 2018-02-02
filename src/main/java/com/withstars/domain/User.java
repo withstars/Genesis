@@ -30,7 +30,7 @@ public class User implements Serializable{
 
     @Override
     public String toString() {
-        return "该用户id为"+id+"用户名为"+username+",email为"+email+",手机号为"+phoneNum+",注册时间为"+createTime+",更新时间为"+updateTime+",积分为"+credit+",头像url为"+avatar+",用户类型为"+type;
+        return "User{"+"id="+id+",username="+username+",email="+email+",phoneNum="+phoneNum+",createTime="+createTime+",updateTime="+updateTime+",credit="+credit+",avatar="+avatar+",type="+type+"}";
     }
 
     public Integer getId() {

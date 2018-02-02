@@ -8,6 +8,13 @@ import java.util.Date;
  * 主题实体类
  */
 public class Topic implements Serializable {
+
+    private User user;
+
+    private Tab tab;
+
+    private Integer countReplies;
+
     private Integer id;
 
     private Integer userId;
@@ -24,9 +31,34 @@ public class Topic implements Serializable {
 
     private String content;
 
+
     @Override
     public String toString() {
-        return "该主题id为"+id+",由id为"+userId+"的用户创建,创建时间为"+createTime+",更新时间为"+updateTime+"主题标题为"+title+",点击量为"+click+"板块id为"+tabId+"内容为"+content;
+        return "Topic{"+"id="+id+",userId="+userId+",createTime="+createTime+",updateTime="+updateTime+",title="+title+",click="+click+",tabId="+tabId+",content="+content+"}";
+    }
+
+    public Integer getCountReplies() {
+        return countReplies;
+    }
+
+    public void setCountReplies(Integer countReplies) {
+        this.countReplies = countReplies;
+    }
+
+    public void setTab(Tab tab) {
+        this.tab = tab;
+    }
+
+    public Tab getTab() {
+        return tab;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public Integer getId() {
