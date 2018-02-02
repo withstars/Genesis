@@ -42,7 +42,8 @@ public class TopicController {
     public ModelAndView toMain(){
         ModelAndView indexPage=new ModelAndView("cate");
         //全部主题
-        List<Topic> topics=topicService.getAllTopics();
+        List<Topic> topics=topicService.listTopicsAndUsers();
+
         //获取统计信息
         int topicsNum=topicService.getTopicsNum();
         int usersNum=userService.getUserCount();

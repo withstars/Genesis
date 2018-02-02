@@ -36,4 +36,8 @@ public class TopicServiceImpl implements TopicService {
     public int getTopicsNum() {
         return topicDao.getTopicsNum();
     }
+
+    public List<Topic> listTopicsAndUsers() {
+        return topicDao.listTopicsAndUsers();
+    }
 }

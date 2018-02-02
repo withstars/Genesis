@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.withstars.dao.TopicMapper" >
 
+  <!-- 主题基本结果集  -->
   <resultMap id="BaseResultMap" type="com.withstars.domain.Topic" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="user_id" property="userId" jdbcType="INTEGER" />
@@ -12,15 +13,44 @@
     <result column="tab_id" property="tabId" jdbcType="TINYINT" />
   </resultMap>
 
+  <!-- 主题基本结果集+ 主题内容  用于主题详情-->
   <resultMap id="ResultMapWithBLOBs" type="com.withstars.domain.Topic" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
+
+  <!-- 主题和用户信息结果集 用于首页显示  -->
+  <resultMap id="topicAndUserInfo" type="com.withstars.domain.Topic" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="click" property="click" jdbcType="INTEGER" />
+    <result column="tab_id" property="tabId" jdbcType="TINYINT" />
+    <result column="count_replies" property="countReplies" jdbcType="INTEGER" />
+    <association property="user" javaType="com.withstars.domain.User">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="username" property="username" jdbcType="VARCHAR" />
+      <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    </association>
+    <association property="tab" javaType="com.withstars.domain.Tab">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="tab_name" property="tabName" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  
   <sql id="Base_Column_List" >
     id, user_id, create_time, update_time, title, click, tab_id
   </sql>
+
   <sql id="Blob_Column_List" >
     content
   </sql>
+
+  <select id="listTopicsAndUsers" resultMap="topicAndUserInfo" >
+    select topic.id,topic.user_id,topic.create_time,topic.update_time,topic.title,topic.click,topic.tab_id,user.username,user.avatar ,
+    tab.tab_name,count(*) as count_replies from topic,user,tab,reply where topic.user_id = user.id and tab.id=topic.tab_id and topic.id=reply.topic_id group by topic.id order by topic.id desc ;
+  </select>
 
   <select id="selectById" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
@@ -30,7 +60,6 @@
     from topic
     where id = #{id,jdbcType=INTEGER}
   </select>
-
 
   <select id="getAllTopics" resultMap="BaseResultMap" >
     select
@@ -114,6 +143,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.withstars.domain.Topic" >
     update topic
     <set >
@@ -141,6 +171,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.withstars.domain.Topic" >
     update topic
     set user_id = #{userId,jdbcType=INTEGER},

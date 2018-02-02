@@ -13,6 +13,8 @@ public interface TopicMapper {
 
     Topic selectById(Integer id);
 
+    List<Topic> listTopicsAndUsers();
+
     int updateByPrimaryKeySelective(Topic record);
 
     int updateByPrimaryKeyWithBLOBs(Topic record);

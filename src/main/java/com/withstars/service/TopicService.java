@@ -13,6 +13,11 @@ public interface TopicService {
     public List<Topic> getAllTopics();
 
     /**
+     * 获取全部主题及用户信息 用于渲染首页
+     */
+    public List<Topic> listTopicsAndUsers();
+
+    /**
      * 获取指定ID主题
      */
     public Topic selectById(Integer id);
