@@ -77,4 +77,12 @@ public class MainController {
         newTopicPage.addObject("usersNum",usersNum);
         return  newTopicPage;
     }
+
+    /**
+     * 配置404页面
+     */
+    @RequestMapping("*")
+    public String notFind(){
+        return "404";
+    }
 }
