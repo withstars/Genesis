@@ -13,6 +13,8 @@ public interface TabMapper {
 
     Tab selectByPrimaryKey(Integer id);
 
+    Tab getByTabNameEn(String tabName);
+
     int updateByPrimaryKeySelective(Tab record);
 
     int updateByPrimaryKey(Tab record);
