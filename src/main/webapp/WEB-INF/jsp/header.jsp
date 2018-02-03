@@ -11,21 +11,18 @@
 
                 <!--向左对齐-->
                 <ul class="nav navbar-nav navbar-left">
-                    <li <c:if test="${empty user}">
-                            class="active" </c:if>
-                    ><a href="/go?tab=tech">技术</a>
+                    <li <c:if test="${tab.tabNameEn == 'tech'}">
+                            class="active" </c:if>><a href="/tab/tech">技术</a>
                     </li>
+                    <li <c:if test="${tab.tabNameEn == 'play'}">class="active"
+                        </c:if>><a href="/tab/play">好玩</a></li>
+                    <li <c:if test="${tab.tabNameEn == 'creative'}">class="active"
+                        </c:if>><a href="/tab/creative">创意</a></li>
+                    <li <c:if test="${tab.tabNameEn == 'jobs'}">class="active"
+                         </c:if>><a href="/tab/jobs">工作</a></li>
+                    <li <c:if test="${tab.tabNameEn == 'deals'}">class="active"
+                        </c:if>><a href="/tab/deals">交易</a></li>
 
-                    <li <c:if test="${empty user}">
-                        </c:if>><a href="/go?tab=play">好玩</a></li>
-                    <li <c:if test="${empty user}">
-                        </c:if>><a href="/go?tab=creative">创意</a></li>
-                    <li <c:if test="${empty user}">
-                         </c:if>><a href="/go?tab=jobs">工作</a></li>
-                    <li <c:if test="${empty user}">
-                        </c:if>><a href="/go?tab=deals">交易</a></li>
-                    <li <c:if test="${empty user}">
-                         </c:if>><a href="/go?tab=all">全部</a></li>
                 </ul>
 
                 <c:if test="${empty user}">
