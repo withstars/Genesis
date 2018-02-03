@@ -11,7 +11,18 @@ public class Tab implements Serializable {
 
     private String tabName;
 
+    private String tabNameEn;
+
     private List<Topic> topics;
+
+    public String getTabNameEn() {
+        return tabNameEn;
+    }
+
+    public void setTabNameEn(String tabNameEn) {
+        this.tabNameEn = tabNameEn;
+    }
+
     @Override
     public String toString() {
         return "Tab{"+"id="+id+",tabName="+tabName+"}";
