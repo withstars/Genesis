@@ -1,13 +1,16 @@
 package com.withstars.controller;
 
 import com.withstars.domain.Reply;
+import com.withstars.domain.Tab;
 import com.withstars.domain.Topic;
 import com.withstars.domain.User;
 import com.withstars.service.impl.ReplyServiceImpl;
+import com.withstars.service.impl.TabServiceImpl;
 import com.withstars.service.impl.TopicServiceImpl;
 import com.withstars.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -32,6 +35,9 @@ public class TopicController {
     public ReplyServiceImpl replyService;
     @Autowired
     public UserServiceImpl userService;
+    @Autowired
+    public TabServiceImpl tabService;
+
     //log4j对象
     private final Log log = LogFactory.getLog(getClass());
 
@@ -55,7 +61,7 @@ public class TopicController {
     }
 
     /**
-     * 渲染指定主题页面
+     * 渲染主题详细页面
      */
     @RequestMapping("/t")
     public ModelAndView toTopic(HttpServletRequest request, RedirectAttributes redirect){
@@ -84,10 +90,33 @@ public class TopicController {
     }
 
     /**
+     * 渲染指定板块页面
+     */
+    @RequestMapping("/tab/{tabNameEn}")
+    public ModelAndView toTabPage(@PathVariable("tabNameEn")String tabNameEn){
+        Tab tab=tabService.getByTabNameEn(tabNameEn);
+        Integer tabId=tab.getId();
+
+        ModelAndView indexPage=new ModelAndView("cate");
+        //全部主题
+        List<Topic> topics=topicService.listTopicsAndUsersOfTab(tabId);
+
+        //获取统计信息
+        int topicsNum=topicService.getTopicsNum();
+        int usersNum=userService.getUserCount();
+
+        indexPage.addObject("topics",topics);
+        indexPage.addObject("topicsNum",topicsNum);
+        indexPage.addObject("usersNum",usersNum);
+        indexPage.addObject("tab",tab);
+        return  indexPage;
+    }
+
+    /**
      * 发表主题
      */
     @RequestMapping("/topic/add")
-    public ModelAndView addTopic(HttpServletRequest request, RedirectAttributes redirect){
+    public ModelAndView addTopic(HttpServletRequest request){
         ModelAndView indexPage;
         //未登陆
         if(request.getSession().getAttribute("user")==null){
