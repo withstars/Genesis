@@ -15,6 +15,8 @@ public interface TopicMapper {
 
     List<Topic> listTopicsAndUsers();
 
+    List<Topic> listTopicsAndUsersOfTab(Integer tabId);
+
     int updateByPrimaryKeySelective(Topic record);
 
     int updateByPrimaryKeyWithBLOBs(Topic record);
