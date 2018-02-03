@@ -17,4 +17,8 @@ public class TabServiceImpl implements TabService {
     public List<Tab> getAllTabs() {
         return tabDao.getAllTabs();
     }
+
+    public Tab getByTabNameEn(String tabNameEn) {
+        return tabDao.getByTabNameEn(tabNameEn);
+    }
 }
