@@ -18,6 +18,11 @@ public interface TopicService {
     public List<Topic> listTopicsAndUsers();
 
     /**
+     * 获取全部主题及用户信息 用于渲染板块页面
+     */
+    public List<Topic> listTopicsAndUsersOfTab(Integer tabId);
+
+    /**
      * 获取指定ID主题
      */
     public Topic selectById(Integer id);
