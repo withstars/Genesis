@@ -5,10 +5,11 @@
   <resultMap id="BaseResultMap" type="com.withstars.domain.Tab" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="tab_name" property="tabName" jdbcType="VARCHAR" />
+    <result column="tab_name_en" property="tabNameEn" jdbcType="VARCHAR" />
   </resultMap>
 
   <sql id="Base_Column_List" >
-    id, tab_name
+    id, tab_name,tab_name_en
   </sql>
 
   <select id="getAllTabs" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -24,6 +25,14 @@
     from tab
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="getByTabNameEn" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from tab
+    where tab_name_en = #{tabNameEn,jdbcType=VARCHAR}
+  </select>
+
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from tab
