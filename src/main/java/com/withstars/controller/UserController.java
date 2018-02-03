@@ -73,7 +73,7 @@ public class UserController {
      * 用户注册
      */
     @RequestMapping("/user/add/do")
-    public String addUser(HttpServletRequest request, RedirectAttributes redirect){
+    public String addUser(HttpServletRequest request){
         //新建User对象
         User user=new User();
         //处理手机号
