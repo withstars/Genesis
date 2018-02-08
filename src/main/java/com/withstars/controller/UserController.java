@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.MessageDigest;
 import java.util.Date;
 import java.util.HashMap;
@@ -104,7 +106,7 @@ public class UserController {
      * 返回值: 0:用户名不存在 1:密码错误 2:登录成功
      */
     @RequestMapping("/api/loginCheck")
-    public @ResponseBody Object signin(HttpServletRequest request){
+    public @ResponseBody Object signin(HttpServletRequest request,HttpSession session){
         //处理参数
         String password=getMD5(request.getParameter("password"));
         String username=request.getParameter("username");
@@ -118,9 +120,10 @@ public class UserController {
             User user =userService.getUserByUsername(username);
             Integer userId=user.getId();
             //添加积分
-            boolean ifSuccAddCredit=userService.addCredit(5,userId);
+            boolean ifSuccAddCredit=userService.addCredit(1,userId);
             //用户信息写入session
-            request.getSession().setAttribute("user",user);
+            session.setAttribute("userId",userId);
+            session.setAttribute("username",username);
             //获取登录信息
             String ip=getRemortIP(request);
             String Agent = request.getHeader("User-Agent");
@@ -154,8 +157,9 @@ public class UserController {
      * 用户登出
      */
     @RequestMapping("/signout")
-    public String signout(HttpServletRequest request){
-        request.getSession().removeAttribute("user");
+    public String signout(HttpSession session){
+        session.removeAttribute("userId");
+        session.removeAttribute("username");
         return "redirect:/";
     }
 
@@ -173,26 +177,41 @@ public class UserController {
      * 用户个人主页
      */
     @RequestMapping("/member/{username}")
-    public ModelAndView personalCenter(@PathVariable("username")String username,HttpServletRequest request,RedirectAttributes redirect){
+    public ModelAndView personalCenter(@PathVariable("username")String username,HttpSession session){
         boolean ifExistUser=userService.existUsername(username);
         //获取统计信息
         int topicsNum=topicService.getTopicsNum();
         int usersNum=userService.getUserCount();
 
+        //获取用户信息
+        Integer uid=(Integer) session.getAttribute("userId");
+        User user=userService.getUserById(uid);
+
         ModelAndView mv=new ModelAndView("user_info");
         if (ifExistUser){
-            User user=userService.getUserByUsername(username);
-            mv.addObject("userInfo",user);
+            User resultUser=userService.getUserByUsername(username);
+            mv.addObject("userInfo",resultUser);
             mv.addObject("topicsNum",topicsNum);
             mv.addObject("usersNum",usersNum);
+            mv.addObject("user",user);
             return mv;
         }else {
             String errorInfo=new String("会员未找到");
             mv.addObject("errorInfo",errorInfo);
             return mv;
         }
+    }
+
+    @RequestMapping("/settings")
+    public ModelAndView settings(HttpServletRequest request, HttpSession session){
+
+        User user=(User) session.getAttribute("userId");
+
+        ModelAndView modelAndView=new ModelAndView("settings");
+        return modelAndView;
 
     }
+
 
 
 }
