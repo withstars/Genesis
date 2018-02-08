@@ -38,6 +38,23 @@
       <result column="tab_name" property="tabName" jdbcType="VARCHAR" />
     </association>
   </resultMap>
+
+  <!-- 主题详情及用户必要信息 用于主题详情页  -->
+  <resultMap id="topicAndUserDetail" type="com.withstars.domain.Topic">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="click" property="click" jdbcType="INTEGER" />
+    <result column="tab_id" property="tabId" jdbcType="TINYINT" />
+    <association property="user" javaType="com.withstars.domain.User">
+      <id column="id" property="id" jdbcType="INTEGER" />
+      <result column="username" property="username" jdbcType="VARCHAR" />
+      <result column="avatar" property="avatar" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
   
   <sql id="Base_Column_List" >
     id, user_id, create_time, update_time, title, click, tab_id
@@ -49,22 +66,23 @@
 
   <select id="listTopicsAndUsers" resultMap="topicAndUserInfo" >
     select topic.id,topic.user_id,topic.create_time,topic.update_time,topic.title,topic.click,topic.tab_id,user.username,user.avatar ,
-    tab.tab_name,count(*) as count_replies from topic,user,tab,reply where topic.user_id = user.id and tab.id=topic.tab_id and topic.id=reply.topic_id group by topic.id order by topic.id desc ;
+    tab.tab_name,count(reply.id) as count_replies from topic LEFT JOIN user on  topic.user_id = user.id
+	LEFT JOIN tab on tab.id=topic.tab_id LEFT JOIN reply on topic.id=reply.topic_id
+	group by topic.id order by topic.id desc ;
   </select>
 
   <select id="listTopicsAndUsersOfTab" parameterType="java.lang.Integer" resultMap="topicAndUserInfo" >
-  select topic.id,topic.user_id,topic.create_time,topic.update_time,topic.title,topic.click,topic.tab_id,user.username,user.avatar ,
-  tab.tab_name,count(*) as count_replies from topic,user,tab,reply where topic.user_id = user.id and tab.id=topic.tab_id and topic.id=reply.topic_id and topic.tab_id=#{id,jdbcType=INTEGER} group by topic.id order by topic.id desc ;
+   select topic.id,topic.user_id,topic.create_time,topic.update_time,topic.title,topic.click,topic.tab_id,user.username,user.avatar ,
+    tab.tab_name,count(reply.id) as count_replies from topic LEFT JOIN user on  topic.user_id = user.id
+	LEFT JOIN tab on tab.id=topic.tab_id  LEFT JOIN reply on topic.id=reply.topic_id where tab.id = #{id,jdbcType=INTEGER}
+	group by topic.id order by topic.id desc ;
   </select>
 
-  <select id="selectById" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from topic
-    where id = #{id,jdbcType=INTEGER}
+  <select id="selectById" parameterType="java.lang.Integer" resultMap="topicAndUserDetail">
+      SELECT topic.*,user.username,user.avatar from topic,user where topic.user_id = user.id and topic.id = #{id,jdbcType=INTEGER};
   </select>
+
+
 
   <select id="getAllTopics" resultMap="BaseResultMap" >
     select
