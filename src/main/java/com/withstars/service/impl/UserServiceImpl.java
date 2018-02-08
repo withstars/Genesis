@@ -50,4 +50,8 @@ public class UserServiceImpl implements UserService {
     public int getUserCount() {
         return userDao.getUserCount();
     }
+
+    public User getUserById(Integer id) {
+        return userDao.selectByPrimaryKey(id);
+    }
 }

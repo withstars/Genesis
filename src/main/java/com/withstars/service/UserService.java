@@ -21,13 +21,25 @@ public interface UserService {
 
     /**
      * 检查username是否存在
+     * @param username
+     * @return
      */
     public boolean existUsername(String username);
 
     /**
-     * 登录后获取用户信息
+     * 获取用户信息
+     * @param username
+     * @return
      */
     public User getUserByUsername(String username);
+
+
+    /**
+     * 获取用户信息
+     * @param id
+     * @return
+     */
+    public User getUserById(Integer id);
 
     /**
      * 获取用户数
