@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,12 +17,12 @@
 <div class="panel panel-default" id="main" style="">
     <div class="panel-heading" style="background-color: white">
         <div class="panel-heading" style="background-color: white">
-            <a href="/">Genesis</a> › 新主题
+            <a href="/">Genesis</a> › 主题
         </div>
         <h3>${topic.title}</h3><br/>
         <div>
-            <a><span ><strong>${topic.userId}</strong></span></a>●
-            <small class="text-muted">${topic.localCreateTime}</small>●
+            <a><span ><strong>${topic.user.username}</strong></span></a>&nbsp;&nbsp;
+            <small class="text-muted">${topic.localCreateTime}</small>&nbsp;&nbsp;
             <small class="text-muted">${topic.click}次点击</small>
         </div>
     </div>
@@ -36,7 +37,7 @@
 <c:if test="${!empty replies}">
 <div class="panel panel-default" id="main" style="">
     <div class="panel-heading" style="background-color: white">
-        <span>${repliesNum} 回复  |  直到 2018-01-19 11:20:23 +08:00</span>
+        <span>${fn:length(replies)} 回复  |  直到 2018-01-19 11:20:23 +08:00</span>
     </div>
 
     <ul class="list-group" style="width: 100%">
@@ -48,7 +49,7 @@
                     <img width="50px" height="50px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516705523&di=8ce297fa0fff1917be616a0995f6748a&imgtype=jpg&er=1&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F2cf5e0fe9925bc313db40d1c5edf8db1ca13704c.jpg" class="img-rounded">
                 </div>
                 <div style="width: 89%;float: left">
-                    <a href="/t?id="><strong>${reply.replyUserId}</strong></a>●
+                    <a href="/member/${reply.user.username}"><strong>${reply.user.username}</strong></a>&nbsp;&nbsp;
                     <small class="text-muted">${reply.createTime}</small>
                     <br/>
                     <div>

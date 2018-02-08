@@ -25,7 +25,7 @@
 
                 </ul>
 
-                <c:if test="${empty user}">
+                <c:if test="${empty userId}">
                 <!--未登陆-->
                  <ul class="nav navbar-nav navbar-right">
                        <li>
@@ -36,14 +36,14 @@
                        </li>
                  </ul>
                 </c:if>
-            <c:if test="${!empty user}">
+            <c:if test="${!empty userId}">
                    <!--已登陆-->
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <p class="navbar-text"><a href="/">首页</a></p>
                     </li>
                     <li>
-                        <p class="navbar-text"><a href="/member/${user.username}">${user.username}</a></p>
+                        <p class="navbar-text"><a href="/member/${username}">${username}</a></p>
                     </li>
                     <li>
                         <p class="navbar-text"><a href="/settings">设置</a></p>

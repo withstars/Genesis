@@ -55,7 +55,7 @@
 
 <div class="panel panel-default" id="main" style="width: 70%;margin:1% 2% 5% 5%;float: left;">
     <div class="panel-heading" style="background-color: white">
-        <a style="margin-right: 2%">活跃</a><a style="margin-right: 2%">精华</a><a style="margin-right: 2%">投票</a><a style="margin-right: 2%">最近</a>
+        <a style="margin-right: 2%">活跃</a><a style="margin-right: 2%">精华</a><a style="margin-right: 2%">最近</a>
     </div>
 
 <ul class="list-group" style="width: 100%">
@@ -66,10 +66,10 @@
                 <img width="50px" height="50px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516705523&di=8ce297fa0fff1917be616a0995f6748a&imgtype=jpg&er=1&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F2cf5e0fe9925bc313db40d1c5edf8db1ca13704c.jpg" class="img-rounded">
             </div>
             <div style="width: 89%;float: left">
-                <a href="/t?id=${topic.id}">${topic.title}</a><br/>
+                <a href="/t/${topic.id}">${topic.title}</a><br/>
                 <div>
-                    <a><span class="label label-default" >${topic.tab.tabName}</span></a>●
-                    <a href="/member/${topic.user.username}"><span ><strong>${topic.user.username}</strong></span></a>●
+                    <a><span class="label label-default" >${topic.tab.tabName}</span></a>&nbsp;&nbsp;&nbsp;
+                    <a href="/member/${topic.user.username}"><span ><strong>${topic.user.username}</strong></span></a>&nbsp;&nbsp;&nbsp;
                     <small class="text-muted">${topic.localCreateTime}</small>
                 </div>
             </div>
