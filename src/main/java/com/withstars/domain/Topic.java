@@ -126,12 +126,12 @@ public class Topic implements Serializable {
     }
 
     public String getLocalCreateTime() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-M-dd HH:mm");//设置日期格式
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-M-dd HH:mm:ss");//设置日期格式
         String date = df.format(this.createTime);
         return date;
     }
     public String getLocalUpdateTime() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-M-dd HH:mm");//设置日期格式
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-M-dd HH:mm:ss");//设置日期格式
         String date = df.format(updateTime);
         return date;
     }
