@@ -21,8 +21,8 @@
         </div>
         <h3>${topic.title}</h3><br/>
         <div>
-            <a><span ><strong>${topic.user.username}</strong></span></a>&nbsp;&nbsp;
-            <small class="text-muted">${topic.localCreateTime}</small>&nbsp;&nbsp;
+            <a href="/member/${topic.user.username}"><span ><strong>${topic.user.username}</strong></span></a>&nbsp;&nbsp;
+            <small class="text-muted">${topic.localCreateTime}&nbsp;&nbsp;&nbsp;+08:00</small>&nbsp;&nbsp;
             <small class="text-muted">${topic.click}次点击</small>
         </div>
     </div>
@@ -37,7 +37,14 @@
 <c:if test="${!empty replies}">
 <div class="panel panel-default" id="main" style="">
     <div class="panel-heading" style="background-color: white">
-        <span>${fn:length(replies)} 回复  |  直到 2018-01-19 11:20:23 +08:00</span>
+        <span>
+                ${fn:length(replies)} 回复  |  直到 <c:forEach items="${replies}" var="reply" varStatus="status">
+
+<c:if test="${status.last}">
+    ${reply.localCreateTime}
+    </c:if>
+    </c:forEach>
+    </span>
     </div>
 
     <ul class="list-group" style="width: 100%">
@@ -46,11 +53,11 @@
         <li class="list-group-item">
             <div style="height: 50px">
                 <div style="float: left;width: 6%;margin-bottom: 5px">
-                    <img width="50px" height="50px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516705523&di=8ce297fa0fff1917be616a0995f6748a&imgtype=jpg&er=1&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F2cf5e0fe9925bc313db40d1c5edf8db1ca13704c.jpg" class="img-rounded">
+                    <img width="50px" height="50px" src="${reply.user.avatar} " class="img-rounded">
                 </div>
                 <div style="width: 89%;float: left">
                     <a href="/member/${reply.user.username}"><strong>${reply.user.username}</strong></a>&nbsp;&nbsp;
-                    <small class="text-muted">${reply.createTime}</small>
+                    <small class="text-muted">${reply.localCreateTime}&nbsp;&nbsp;&nbsp;+08:00</small>
                     <br/>
                     <div>
                         <p>${reply.content}</p>

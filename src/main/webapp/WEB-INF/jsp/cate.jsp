@@ -63,7 +63,7 @@
     <li class="list-group-item">
         <div style="height: 50px">
             <div style="float: left;width: 6%;margin-bottom: 5px">
-                <img width="50px" height="50px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516705523&di=8ce297fa0fff1917be616a0995f6748a&imgtype=jpg&er=1&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F2cf5e0fe9925bc313db40d1c5edf8db1ca13704c.jpg" class="img-rounded">
+                <img width="50px" height="50px" src="${topic.user.avatar}" class="img-rounded">
             </div>
             <div style="width: 89%;float: left">
                 <a href="/t/${topic.id}">${topic.title}</a><br/>
