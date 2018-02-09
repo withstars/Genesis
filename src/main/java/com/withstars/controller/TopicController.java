@@ -60,8 +60,11 @@ public class TopicController {
         //获取用户信息
         Integer uid=(Integer) session.getAttribute("userId");
         User user=userService.getUserById(uid);
+        //最热主题
+        List<Topic> hotestTopics=topicService.listMostCommentsTopics();
 
         indexPage.addObject("topics",topics);
+        indexPage.addObject("hotestTopics",hotestTopics);
         indexPage.addObject("topicsNum",topicsNum);
         indexPage.addObject("usersNum",usersNum);
         indexPage.addObject("user",user);
@@ -90,6 +93,8 @@ public class TopicController {
         //获取用户信息
         Integer uid=(Integer) session.getAttribute("userId");
         User user=userService.getUserById(uid);
+        //最热主题
+        List<Topic> hotestTopics=topicService.listMostCommentsTopics();
 
         //渲染视图
         ModelAndView topicPage=new ModelAndView("detail");
@@ -99,6 +104,7 @@ public class TopicController {
         topicPage.addObject("topicsNum",topicsNum);
         topicPage.addObject("usersNum",usersNum);
         topicPage.addObject("user",user);
+        topicPage.addObject("hotestTopics",hotestTopics);
         return topicPage;
     }
 
@@ -121,12 +127,15 @@ public class TopicController {
         //获取用户信息
         Integer uid=(Integer) session.getAttribute("userId");
         User user=userService.getUserById(uid);
+        //最热主题
+        List<Topic> hotestTopics=topicService.listMostCommentsTopics();
 
         indexPage.addObject("topics",topics);
         indexPage.addObject("topicsNum",topicsNum);
         indexPage.addObject("usersNum",usersNum);
         indexPage.addObject("tab",tab);
         indexPage.addObject("user",user);
+        indexPage.addObject("hotestTopics",hotestTopics);
         return  indexPage;
     }
 
