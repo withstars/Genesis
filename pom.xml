@@ -6,7 +6,7 @@
 
     <groupId>com.withstars</groupId>
     <artifactId>genesis</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
 
     <properties>
         <file.encoding>UTF-8</file.encoding>
