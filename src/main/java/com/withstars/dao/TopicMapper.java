@@ -17,6 +17,7 @@ public interface TopicMapper {
 
     List<Topic> listTopicsAndUsersOfTab(Integer tabId);
 
+    List<Topic>  listMostCommentsTopics();
 
     int updateByPrimaryKeySelective(Topic record);
 

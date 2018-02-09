@@ -22,4 +22,5 @@ public interface ReplyMapper {
     int updateByPrimaryKey(Reply record);
 
     int getRepliesNum(Integer topicId);
+
 }
