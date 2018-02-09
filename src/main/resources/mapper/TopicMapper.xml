@@ -55,6 +55,13 @@
       <result column="avatar" property="avatar" jdbcType="VARCHAR" />
     </association>
   </resultMap>
+
+  <!-- 最多评论主题列表 -->
+  <resultMap id="mostCommentsTopic" type="com.withstars.domain.Topic">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="count_replies" property="countReplies" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+  </resultMap>
   
   <sql id="Base_Column_List" >
     id, user_id, create_time, update_time, title, click, tab_id
@@ -95,6 +102,10 @@
     select
     COUNT(*)
     from topic
+  </select>
+
+  <select id="listMostCommentsTopics" resultMap="mostCommentsTopic">
+    SELECT topic.id,topic.title,count(reply.id) as count_replies  from topic ,reply  where topic.id = reply.topic_id group by topic.id order by count_replies desc limit 5;
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
