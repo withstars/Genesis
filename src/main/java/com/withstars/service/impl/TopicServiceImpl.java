@@ -25,6 +25,10 @@ public class TopicServiceImpl implements TopicService {
         return topic;
     }
 
+    public List<Topic> listMostCommentsTopics() {
+        return topicDao.listMostCommentsTopics();
+    }
+
     public boolean addTopic(Topic topic) {
         return topicDao.insert(topic)>0;
     }
