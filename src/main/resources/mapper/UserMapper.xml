@@ -52,11 +52,11 @@
     insert into user (username, password,
       email, phone_num, create_time, 
       update_time, credit,
-      type)
+      type,avatar)
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{email,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP}, #{credit,jdbcType=INTEGER},
-      #{type,jdbcType=TINYINT})
+      #{type,jdbcType=TINYINT},#{avatar,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.withstars.domain.User" >
     insert into user
