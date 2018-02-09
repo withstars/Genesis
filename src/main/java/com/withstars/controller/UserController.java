@@ -1,6 +1,7 @@
 package com.withstars.controller;
 
 import com.withstars.domain.LoginLog;
+import com.withstars.domain.Topic;
 import com.withstars.domain.User;
 import com.withstars.service.impl.LoginLogServiceImpl;
 import com.withstars.service.impl.TopicServiceImpl;
@@ -17,9 +18,7 @@ import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.MessageDigest;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.StringTokenizer;
+import java.util.*;
 
 /**
  * 用户相关控制类
@@ -86,6 +85,10 @@ public class UserController {
         Byte type=new Byte("0");
         //密码加密处理
         String password=getMD5(request.getParameter("password"));
+        //生成随机数，用于生成头像URL
+        Random rand=new Random();
+        int randomNum=rand.nextInt(10)+1;
+        String avatarUrl="/img/avatar/avatar-default-"+randomNum+".png";
         //初始化User对象
         user.setUsername(request.getParameter("username"));
         user.setPassword(password);
@@ -95,6 +98,7 @@ public class UserController {
         user.setUpdateTime(new Date());
         user.setCredit(0);
         user.setType(type);
+        user.setAvatar(avatarUrl);
 
         boolean ifSucc=userService.addUser(user);
         System.out.print(ifSucc);
@@ -205,11 +209,15 @@ public class UserController {
     @RequestMapping("/settings")
     public ModelAndView settings(HttpServletRequest request, HttpSession session){
 
-        User user=(User) session.getAttribute("userId");
+        Integer uid=(Integer) session.getAttribute("userId");
+        User user=userService.getUserById(uid);
+        //最热主题
+        List<Topic> hotestTopics=topicService.listMostCommentsTopics();
 
-        ModelAndView modelAndView=new ModelAndView("settings");
-        return modelAndView;
-
+        ModelAndView mv=new ModelAndView("settings");
+        mv.addObject("user",user);
+        mv.addObject("hotestTopics",hotestTopics);
+        return mv;
     }
 
 
