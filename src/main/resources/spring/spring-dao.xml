@@ -15,6 +15,7 @@
 
     <!-- 2.数据库连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="connectionInitSqls" value="set names utf8mb4;"/>
         <property name="driverClassName" value="${driver}"/>
         <property name="url" value="${url}"/>
         <property name="username" value="${name}"/>
