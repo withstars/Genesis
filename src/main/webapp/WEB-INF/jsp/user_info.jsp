@@ -23,7 +23,7 @@
             <c:if test="${!empty userInfo}">
             <form class="form-horizontal" role="form">
                 <div style="margin-left: 17%">
-                    <img width="60px" height="60px" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516705523&di=8ce297fa0fff1917be616a0995f6748a&imgtype=jpg&er=1&src=http%3A%2F%2Fb.hiphotos.baidu.com%2Fbaike%2Fpic%2Fitem%2F2cf5e0fe9925bc313db40d1c5edf8db1ca13704c.jpg" class="img-rounded">
+                    <img width="60px" height="60px" src="${userInfo.avatar}" class="img-rounded">
                 </div><br/>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">uid</label>
