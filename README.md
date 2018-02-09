@@ -15,3 +15,5 @@ A social networking site built by Java.
 
  # mvn jetty:run
 ```
+## LICENSE
+`MIT`
