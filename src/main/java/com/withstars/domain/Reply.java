@@ -1,6 +1,7 @@
 package com.withstars.domain;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -90,5 +91,16 @@ public class Reply implements Serializable {
 
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
+    }
+
+    public String getLocalCreateTime() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-M-dd HH:mm:ss");//设置日期格式
+        String date = df.format(this.createTime);
+        return date;
+    }
+    public String getLocalUpdateTime() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-M-dd HH:mm:ss");//设置日期格式
+        String date = df.format(updateTime);
+        return date;
     }
 }
