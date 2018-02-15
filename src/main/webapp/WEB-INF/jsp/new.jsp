@@ -40,7 +40,7 @@
                         </select>
                     </div>
                 </div><br/>
-                <input type="submit" class="btn btn-default btn-sm">
+                <input type="submit" class="btn btn-default btn-sm" value="发布主题">
 
             </form>
         </div>

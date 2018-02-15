@@ -7,7 +7,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <script src="/js/jquery-3.2.1.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <title>Genesis › <c:if test="${!empty userInfo}">${userInfo.username}</c:if><c:if test="${!empty errorInfo}">会员未找到</c:if></title>
+    <title>Genesis ›设置</title>
 </head>
 <body>
 <!-- 引入header文件 -->
@@ -16,50 +16,49 @@
 <div style="width: 70%;margin:1% 2% 1% 5%;float: left;">
     <div class="panel panel-default" id="main" style="">
         <div class="panel-heading" style="background-color: white">
-            <a href="/">Genesis</a> › ${userInfo.username}
+            <a href="/">Genesis</a> › 设置
         </div>
 
         <div class="panel-body">
-            <c:if test="${!empty userInfo}">
-                <form class="form-horizontal" role="form">
+
+                <form class="form-horizontal" role="form" >
                     <div style="margin-left: 17%">
-                        <img width="60px" height="60px" src="${userInfo.avatar}" class="img-rounded">
-                    </div><br/>
+                        <img width="60px" height="60px" src="${user.avatar}" class="img-rounded">
+                        <a class="btn btn-default" href="/settings/avatar" role="button">修改头像</a>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">uid</label>
                         <div class="col-sm-10">
-                            <p class="form-control-static">${userInfo.id}</p>
+                            <p class="form-control-static">${user.id}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">用户名</label>
                         <div class="col-sm-10">
-                            <p class="form-control-static">${userInfo.username}</p>
+                            <p class="form-control-static">${user.username}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-10">
-                            <p class="form-control-static">${userInfo.email}</p>
+                            <p class="form-control-static">${user.email}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">注册时间</label>
                         <div class="col-sm-10">
-                            <p class="form-control-static">${userInfo.localCreateTime}</p>
+                            <p class="form-control-static">${user.localCreateTime}</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">积分</label>
                         <div class="col-sm-10">
-                            <p class="form-control-static">${userInfo.credit}</p>
+                            <p class="form-control-static">${user.credit}</p>
                         </div>
                     </div>
+
                 </form>
-            </c:if>
-            <c:if test="${!empty errorInfo}">
-                会员未找到!
-            </c:if>
+
         </div>
 
     </div>

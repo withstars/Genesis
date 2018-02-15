@@ -83,7 +83,7 @@
                 <input type="hidden" name="topicId" value="${topic.id}">
                 <input type="hidden" name="replyUserId" value="${user.id}">
                 <textarea class="form-control" rows="3" name="content" required="required"></textarea><br/>
-            <input type="submit" class="btn btn-default btn-sm">
+            <input type="submit" class="btn btn-default btn-sm" value="回复">
             </form>
         </div>
 
