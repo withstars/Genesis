@@ -1,5 +1,7 @@
 # Genesis
 [![Build Status](https://travis-ci.org/withstars/Genesis.svg?branch=master)](https://travis-ci.org/withstars/Genesis)
+[![Maven metadata URI](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/google/code/gson/gson/maven-metadata.xml.svg)](https://github.com/withstars/Genesis)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/withstars/Genesis)
 <img src="https://github.com/withstars/Genesis/blob/master/preview/2.PNG">
 ## Introduction
 ```aidl
