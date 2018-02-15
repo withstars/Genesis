@@ -6,17 +6,18 @@ import com.withstars.domain.User;
 import com.withstars.service.impl.LoginLogServiceImpl;
 import com.withstars.service.impl.TopicServiceImpl;
 import com.withstars.service.impl.UserServiceImpl;
+import com.withstars.utils.ProduceMD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.security.MessageDigest;
 import java.util.*;
 
@@ -35,40 +36,6 @@ public class UserController {
     @Autowired
     public TopicServiceImpl topicService;
 
-    /**
-     * 生成MD5值
-     */
-    public static String getMD5(String message) {
-        String md5 = "";
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");  // 创建一个md5算法对象
-            byte[] messageByte = message.getBytes("UTF-8");
-            byte[] md5Byte = md.digest(messageByte);              // 获得MD5字节数组,16*8=128位
-            md5 = bytesToHex(md5Byte);                            // 转换为16进制字符串
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return md5;
-    }
-
-    /**
-     * 二进制转十六进制
-     */
-    public static String bytesToHex(byte[] bytes) {
-        StringBuffer hexStr = new StringBuffer();
-        int num;
-        for (int i = 0; i < bytes.length; i++) {
-            num = bytes[i];
-            if(num < 0) {
-                num += 256;
-            }
-            if(num < 16){
-                hexStr.append("0");
-            }
-            hexStr.append(Integer.toHexString(num));
-        }
-        return hexStr.toString().toUpperCase();
-    }
 
     /**
      * 用户注册
@@ -84,7 +51,7 @@ public class UserController {
         //用户类型
         Byte type=new Byte("0");
         //密码加密处理
-        String password=getMD5(request.getParameter("password"));
+        String password= ProduceMD5.getMD5(request.getParameter("password"));
         //生成随机数，用于生成头像URL
         Random rand=new Random();
         int randomNum=rand.nextInt(10)+1;
@@ -107,12 +74,14 @@ public class UserController {
 
     /**
      * 用户登陆
-     * 返回值: 0:用户名不存在 1:密码错误 2:登录成功
+     * @param request
+     * @param session
+     * @return 0:用户名不存在 1:密码错误 2:登录成功
      */
     @RequestMapping("/api/loginCheck")
     public @ResponseBody Object signin(HttpServletRequest request,HttpSession session){
         //处理参数
-        String password=getMD5(request.getParameter("password"));
+        String password=ProduceMD5.getMD5(request.getParameter("password"));
         String username=request.getParameter("username");
         //验证用户名密码
         int loginVerify=userService.login(username,password);
@@ -190,8 +159,11 @@ public class UserController {
         //获取用户信息
         Integer uid=(Integer) session.getAttribute("userId");
         User user=userService.getUserById(uid);
+        //最热主题
+        List<Topic> hotestTopics=topicService.listMostCommentsTopics();
 
         ModelAndView mv=new ModelAndView("user_info");
+        mv.addObject("hotestTopics",hotestTopics);
         if (ifExistUser){
             User resultUser=userService.getUserByUsername(username);
             mv.addObject("userInfo",resultUser);
@@ -211,6 +183,7 @@ public class UserController {
 
         Integer uid=(Integer) session.getAttribute("userId");
         User user=userService.getUserById(uid);
+
         //最热主题
         List<Topic> hotestTopics=topicService.listMostCommentsTopics();
 
@@ -220,6 +193,58 @@ public class UserController {
         return mv;
     }
 
+    @RequestMapping(value = "/settings/avatar",method = RequestMethod.GET)
+    public ModelAndView updateAvatar(HttpServletRequest request, HttpSession session){
+
+        Integer uid=(Integer) session.getAttribute("userId");
+        User user=userService.getUserById(uid);
+
+        //最热主题
+        List<Topic> hotestTopics=topicService.listMostCommentsTopics();
+
+        ModelAndView mv=new ModelAndView("update_avatar");
+        mv.addObject("user",user);
+        mv.addObject("hotestTopics",hotestTopics);
+        return mv;
+    }
+    @RequestMapping(value = "/settings/avatar/update",method = RequestMethod.POST)
+    public ModelAndView updateAvatarDo(@RequestPart("avatar")MultipartFile avatarFile, HttpServletRequest request, HttpSession session){
+        Integer uid=(Integer) session.getAttribute("userId");
+
+        String fileName=avatarFile.getOriginalFilename();
+        String suffix=fileName.substring(fileName.lastIndexOf(".")+1, fileName.length());
+        Long date=new Date().getTime();
+        String newFileName=date+"-"+uid+"."+suffix;
+        String absolutePath=session.getServletContext().getRealPath("/static/img/avatar")+"\\"+newFileName;
+        String relativePath="/img/avatar"+"\\"+newFileName;
+        User newUser=new User();
+        newUser.setAvatar(relativePath);
+        newUser.setId(uid);
+        File file=new File(absolutePath);
+
+        if (!file.exists()){
+            try {
+                avatarFile.transferTo(file);
+                userService.updateUser(newUser);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
+
+
+
+        User user=userService.getUserById(uid);
+
+        //最热主题
+        List<Topic> hotestTopics=topicService.listMostCommentsTopics();
+
+        ModelAndView mv=new ModelAndView("update_avatar");
+        mv.addObject("user",user);
+
+        mv.addObject("hotestTopics",hotestTopics);
+        return mv;
+    }
 
 
 }
