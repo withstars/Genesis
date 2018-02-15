@@ -3,7 +3,7 @@
 <img src="https://github.com/withstars/Genesis/blob/master/preview/2.PNG">
 ## Introduction
 ```aidl
-A social networking site built by Java.
+A developer community website base on ssm-maven.
 ```
 
 ## How to use
@@ -17,4 +17,6 @@ A social networking site built by Java.
  # mvn jetty:run
 ```
 ## LICENSE
-`MIT`
+`Apache 2.0`
+## Contact
+`withstars@126.com`
