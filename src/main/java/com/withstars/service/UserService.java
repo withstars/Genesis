@@ -45,4 +45,6 @@ public interface UserService {
      * 获取用户数
      */
     public int getUserCount();
+
+    public boolean updateUser(User user);
 }

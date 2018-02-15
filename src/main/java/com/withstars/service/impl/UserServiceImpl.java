@@ -54,4 +54,8 @@ public class UserServiceImpl implements UserService {
     public User getUserById(Integer id) {
         return userDao.selectByPrimaryKey(id);
     }
+
+    public boolean updateUser(User user) {
+        return userDao.updateByPrimaryKeySelective(user)>0;
+    }
 }
