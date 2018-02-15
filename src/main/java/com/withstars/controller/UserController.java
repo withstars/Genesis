@@ -215,8 +215,8 @@ public class UserController {
         String suffix=fileName.substring(fileName.lastIndexOf(".")+1, fileName.length());
         Long date=new Date().getTime();
         String newFileName=date+"-"+uid+"."+suffix;
-        String absolutePath=session.getServletContext().getRealPath("/static/img/avatar")+"\\"+newFileName;
-        String relativePath="/img/avatar"+"\\"+newFileName;
+        String absolutePath=session.getServletContext().getRealPath("/static/img/avatar")+"/"+newFileName;
+        String relativePath="/img/avatar"+"/"+newFileName;
         User newUser=new User();
         newUser.setAvatar(relativePath);
         newUser.setId(uid);
