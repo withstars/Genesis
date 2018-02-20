@@ -1,4 +1,4 @@
-package com.withstars.utils;
+package com.withstars.util;
 
 import java.security.MessageDigest;
 

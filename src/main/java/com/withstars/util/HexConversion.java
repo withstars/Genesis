@@ -1,6 +1,4 @@
-package com.withstars.utils;
-
-import java.security.MessageDigest;
+package com.withstars.util;
 
 /**
  * Created with IntelliJ IDEA.
