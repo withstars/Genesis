@@ -6,19 +6,16 @@ import com.withstars.domain.User;
 import com.withstars.service.impl.LoginLogServiceImpl;
 import com.withstars.service.impl.TopicServiceImpl;
 import com.withstars.service.impl.UserServiceImpl;
-import com.withstars.utils.ProduceMD5;
+import com.withstars.util.ProduceMD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
-import java.security.MessageDigest;
 import java.util.*;
 
 /**
@@ -245,6 +242,5 @@ public class UserController {
         mv.addObject("hotestTopics",hotestTopics);
         return mv;
     }
-
 
 }
