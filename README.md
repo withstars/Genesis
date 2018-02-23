@@ -9,13 +9,15 @@ A developer community website base on ssm-maven.
 
 ## How to use
 ```aidl
- # mvn clean compile
+ $ mvn clean compile
 
- # mvn clean package
+ $ mvn clean package
 
- # mvn clean install
+ $ mvn clean install
 
- # mvn jetty:run
+ $ mvn jetty:run
+ 
+ http://localhost:8080
 ```
 ## LICENSE
 `Apache 2.0`
