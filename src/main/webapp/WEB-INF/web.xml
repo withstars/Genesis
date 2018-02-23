@@ -8,7 +8,7 @@
     <!-- Spring配置文件 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring/spring-*.xml</param-value>
+        <param-value>classpath:applicationContext.xml </param-value>
     </context-param>
     <!--.负责启动spring容器的监听器，它将引用1处的上下文参数获得spring配置文件的地址 -->
     <listener>
@@ -16,9 +16,11 @@
             org.springframework.web.context.ContextLoaderListener
         </listener-class>
     </listener>
+
+
     <!-- spring MVC 的主控servlet -->
     <servlet>
-        <servlet-name>forum</servlet-name>
+        <servlet-name>main</servlet-name>
         <servlet-class>
             org.springframework.web.servlet.DispatcherServlet
         </servlet-class>
@@ -26,18 +28,9 @@
     </servlet>
     <!--spring MVC 的主控servlet 的映射URL -->
     <servlet-mapping>
-        <servlet-name>forum</servlet-name>
+        <servlet-name>main</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>rest</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
 
-    <servlet-mapping>
-        <servlet-name>rest</servlet-name>
-        <url-pattern>/api/</url-pattern>
-    </servlet-mapping>
 </web-app>

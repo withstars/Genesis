@@ -75,8 +75,10 @@ public class UserController {
      * @param session
      * @return 0:用户名不存在 1:密码错误 2:登录成功
      */
+
     @RequestMapping("/api/loginCheck")
-    public @ResponseBody Object signin(HttpServletRequest request,HttpSession session){
+    @ResponseBody
+    public Object signin(HttpServletRequest request,HttpSession session){
         //处理参数
         String password=ProduceMD5.getMD5(request.getParameter("password"));
         String username=request.getParameter("username");

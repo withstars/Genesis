@@ -24,7 +24,7 @@
                 <form class="form-horizontal" role="form" >
                     <div style="margin-left: 17%">
                         <img width="60px" height="60px" src="${user.avatar}" class="img-rounded">
-                        <a class="btn btn-default" href="/settings/avatar" role="button">修改头像</a>
+                        <a class="btn btn-default" href="/settings/avatar" role="button">更换头像</a>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">uid</label>

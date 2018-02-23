@@ -4,16 +4,23 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd ">
-    <!-- 扫描web包，应用Spring的注解 -->
+
     <context:component-scan base-package="com.withstars.controller"/>
 
-    <!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
+    <aop:aspectj-autoproxy/>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <context:component-scan base-package="com.withstars.aop" />
+
+
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver"
             p:viewClass="org.springframework.web.servlet.view.JstlView"
@@ -37,4 +44,12 @@
             </props>
         </property>
     </bean>
+
+    <!--设置配置方案 -->
+    <mvc:annotation-driven />
+    <!-- 配置静态资源 -->
+    <mvc:resources location="/static/img/" mapping="/img/**" />
+    <mvc:resources location="/static/js/" mapping="/js/**" />
+    <mvc:resources location="/static/css/" mapping="/css/**" />
+
 </beans>
