@@ -1,12 +1,10 @@
-# Genesis
-## 一个开发者社区
-[![Build Status](https://travis-ci.org/withstars/Genesis.svg?branch=master)](https://travis-ci.org/withstars/Genesis)
-[![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/withstars/Genesis)
+<h1 align="center">Genesis- 一个开发者社区</h1>
+<h2 align="center"> 基于Spring+Spring MVC+Mybatis(Maven方式构建)</h2>
 
-```aidl
-基于Spring, Spring MVC, MyBatis 框架开发
-```
-## 截图
+<p align="center">
+ <a href="https://travis-ci.org/withstars/Genesis"><img src="https://travis-ci.org/withstars/Genesis.svg?branch=master" alt="travis-ci"></a>
+ <a href="https://github.com/withstars/Genesis"><img src="https://img.shields.io/hexpm/l/plug.svg" alt="license"></a>
+</p>
 <img src="https://raw.githubusercontent.com/withstars/Genesis/master/preview/1.PNG">
 <img src="https://raw.githubusercontent.com/withstars/Genesis/master/preview/2.PNG">
 ## 说明
