@@ -12,6 +12,12 @@
         <setting name="useColumnLabel" value="true" />
         <!-- 开启驼峰命名转换:Table{create_time} -> Entity{createTime} -->
         <setting name="mapUnderscoreToCamelCase" value="true" />
+        <!-- 日志开启 -->
+        <setting name="logImpl" value="LOG4J"/>
+        <!-- 二级缓存开启 -->
+        <setting name="cacheEnabled" value="true"/>
+        <setting name="lazyLoadingEnabled" value="false"/>
+        <setting name="aggressiveLazyLoading" value="true"/>
     </settings>
 
     <plugins>

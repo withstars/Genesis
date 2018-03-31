@@ -15,7 +15,6 @@
     <!-- 1.配置数据库相关参数properties的属性：${url} -->
     <context:property-placeholder location="classpath:jdbc.properties" />
 
-
     <!-- 2.数据库连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <property name="connectionInitSqls" value="set names utf8mb4;"/>
