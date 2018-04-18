@@ -18,6 +18,7 @@
     </listener>
 
 
+
     <!-- spring MVC 的主控servlet -->
     <servlet>
         <servlet-name>main</servlet-name>
@@ -31,6 +32,13 @@
         <servlet-name>main</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-
+    <filter>
+        <filter-name>CORSFilter</filter-name>
+        <filter-class>com.withstars.intercepter.CORSFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CORSFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>

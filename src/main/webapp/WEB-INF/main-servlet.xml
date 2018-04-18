@@ -52,4 +52,6 @@
     <mvc:resources location="/static/js/" mapping="/js/**" />
     <mvc:resources location="/static/css/" mapping="/css/**" />
 
+
+
 </beans>
