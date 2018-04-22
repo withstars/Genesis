@@ -16,14 +16,20 @@
 <div style="width: 70%;margin:1% 2% 1% 5%;float: left;">
 <div class="panel panel-default" id="main" style="">
     <div class="panel-heading" style="background-color: white">
-        <div class="panel-heading" style="background-color: white">
-            <a href="/">Genesis</a> › 主题
-        </div>
-        <h3>${topic.title}</h3><br/>
         <div>
-            <a href="/member/${topic.user.username}"><span ><strong>${topic.user.username}</strong></span></a>&nbsp;&nbsp;
-            <small class="text-muted">${topic.localCreateTime}&nbsp;&nbsp;&nbsp;+08:00</small>&nbsp;&nbsp;
-            <small class="text-muted">${topic.click}次点击</small>
+            <div class="panel-heading" style="background-color: white">
+                <a href="/">Genesis</a> › 主题
+            </div>
+            <h3>${topic.title}</h3><br/>
+            <div>
+                <a href="/member/${topic.user.username}"><span ><strong>${topic.user.username}</strong></span></a>&nbsp;&nbsp;
+                <small class="text-muted">${topic.localCreateTime}&nbsp;&nbsp;&nbsp;+08:00</small>&nbsp;&nbsp;
+                <small class="text-muted">${topic.click}次点击</small>
+            </div>
+        </div>
+
+        <div style="float: right;margin-top: -100px" >
+            <img width="50px" height="50px" src="${topic.user.avatar}" class="img-rounded">
         </div>
     </div>
 
@@ -57,7 +63,7 @@
                 </div>
                 <div style="width: 89%;float: left">
                     <a href="/member/${reply.user.username}"><strong>${reply.user.username}</strong></a>&nbsp;&nbsp;
-                    <small class="text-muted">${reply.localCreateTime}&nbsp;&nbsp;&nbsp;+08:00</small>
+                    <small class="text-muted">${reply.localCreateTime}</small>
                     <br/>
                     <div>
                         <p>${reply.content}</p>
