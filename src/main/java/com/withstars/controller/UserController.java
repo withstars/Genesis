@@ -7,6 +7,7 @@ import com.withstars.service.impl.LoginLogServiceImpl;
 import com.withstars.service.impl.TopicServiceImpl;
 import com.withstars.service.impl.UserServiceImpl;
 import com.withstars.util.ProduceMD5;
+import eu.bitwalker.useragentutils.UserAgent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -98,12 +99,9 @@ public class UserController {
             session.setAttribute("username",username);
             //获取登录信息
             String ip=getRemortIP(request);
-            String Agent = request.getHeader("User-Agent");
-            StringTokenizer st = new StringTokenizer(Agent,";");
-            st.nextToken();
+            UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
             //获取用户的浏览器名
-            String userbrowser = st.nextToken();
-            System.out.println(userbrowser);
+            String userbrowser = userAgent.getBrowser().toString();
             //写入登录日志
             LoginLog log=new LoginLog();
             log.setDevice(userbrowser);
