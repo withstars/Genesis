@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 主题板块实体类
  */
-public class Tab implements Serializable {
+public class Tab extends BaseDomain {
     private Integer id;
 
     private String tabName;
@@ -23,10 +23,7 @@ public class Tab implements Serializable {
         this.tabNameEn = tabNameEn;
     }
 
-    @Override
-    public String toString() {
-        return "Tab{"+"id="+id+",tabName="+tabName+"}";
-    }
+
 
     public void setTopics(List<Topic> topics) {
         this.topics = topics;

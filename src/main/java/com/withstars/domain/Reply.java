@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * 回复实体类
  */
-public class Reply implements Serializable {
+public class Reply extends BaseDomain {
     private User user;
 
     private Long id;
@@ -24,10 +24,7 @@ public class Reply implements Serializable {
 
     private String content;
 
-    @Override
-    public String toString() {
-        return "Reply{"+"id="+id+",topicId="+topicId+",replyUserId"+replyUserId+",createTime="+createTime+",updateTime="+updateTime+",device="+device+",content="+content+"}";
-    }
+
 
     public void setUser(User user) {
         this.user = user;

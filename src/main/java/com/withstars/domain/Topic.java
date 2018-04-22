@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * 主题实体类
  */
-public class Topic implements Serializable {
+public class Topic extends BaseDomain {
 
     private User user;
 
@@ -32,10 +32,7 @@ public class Topic implements Serializable {
     private String content;
 
 
-    @Override
-    public String toString() {
-        return "Topic{"+"id="+id+",userId="+userId+",createTime="+createTime+",updateTime="+updateTime+",title="+title+",click="+click+",tabId="+tabId+",content="+content+"}";
-    }
+
 
     public Integer getCountReplies() {
         return countReplies;

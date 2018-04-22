@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 登录日志实体类
  */
-public class LoginLog implements Serializable {
+public class LoginLog extends BaseDomain {
     private Long id;
 
     private Integer userId;
@@ -17,10 +17,7 @@ public class LoginLog implements Serializable {
 
     private String device;
 
-    @Override
-    public String toString() {
-        return "LoginLog{"+"id="+id+",userId="+userId+",loginTime="+loginTime+",ip="+ip+",device"+device+"}";
-    }
+
 
     public Long getId() {
         return id;

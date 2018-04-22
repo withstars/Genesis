@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * 用户信息实体类
  */
-public class User implements Serializable{
+public class User extends BaseDomain{
     private Integer id;
 
     private String username;
@@ -28,10 +28,6 @@ public class User implements Serializable{
 
     private Byte type;
 
-    @Override
-    public String toString() {
-        return "User{"+"id="+id+",username="+username+",email="+email+",phoneNum="+phoneNum+",createTime="+createTime+",updateTime="+updateTime+",credit="+credit+",avatar="+avatar+",type="+type+"}";
-    }
 
     public Integer getId() {
         return id;
